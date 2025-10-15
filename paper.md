@@ -63,7 +63,7 @@ The Iceberg Model is a layered diagnostic heuristic that distinguishes observabl
 
 Consequence for the ConsciOS architecture: the Iceberg Model provides the causal ladder used to argue where and how "frequency" and "coherence" interventions (see Section 4) operate. Interventions framed as "raising frequency" are hypothesized to effect change by altering internal constraints (mental models) and thereby shifting structural dynamics that produce different patterns and events.
 
-![Iceberg Model — diagnostic hierarchy spanning Events, Patterns, Structures, and Mental Models (deeper layers → higher leverage: Transform → Redesign → Proact → React). Credit: adapted from systems-thinking literature [3], [5].](preprint/figures/iceberg-diagnostic-hierarchy.png){ width=90% }
+![Iceberg Model — diagnostic hierarchy spanning Events, Patterns, Structures, and Mental Models (deeper layers → higher leverage: Transform → Redesign → Proact → React). Credit: adapted from systems-thinking literature [3], [5].](figures/iceberg-diagnostic-hierarchy.png){ width=90% }
 
 ###### 2.2 The 7-Component Universal System Model (Architectural Template)
 
@@ -81,7 +81,7 @@ To move from diagnosis to design we adopt a 7-component functional template that
 
 **Utility:** the 7-component model enables cross-domain mapping (human ↔ software agent ↔ institution) and provides a checklist for designing experiments, simulations, or interventions that aim to change system-level behavior.
 
-![Seven-component universal system model — Inputs, Processes, Outputs, Feedback, Actors, External Constraints, Internal Constraints. Credit: ConsciOS synthesis; consistent with systems engineering/cybernetics and viable-system decompositions [4], [6].](preprint/figures/seven-component-system-model.png){ width=80% }
+![Seven-component universal system model — Inputs, Processes, Outputs, Feedback, Actors, External Constraints, Internal Constraints. Credit: ConsciOS synthesis; consistent with systems engineering/cybernetics and viable-system decompositions [4], [6].](figures/seven-component-system-model.png){ width=80% }
 
 ###### 2.3 Integrative Mapping: Connecting Models to ConsciOS
 
@@ -149,7 +149,7 @@ We formalize the Nested ConsciOS Architecture as a nested control topology:
 
 This nested topology is isomorphic to viable-system decompositions used in organizational cybernetics—lower operational units are supervised by higher intelligence while a meta-governor maintains identity and global objectives [4], [6]. Importantly, the ontology treats interplay between layers as bidirectional: the Meta-Self constrains policy families top-down, while feedback and Quality Control mechanisms induce bottom-up belief revision.
 
-![The Nested ConsciOS Architecture — nested control topology (Echo-Self, Super-Self, Meta-Self). Selector score = a·Utility + b·Coherence − g·Cost; Feedback aggregates at Super with a dotted slow branch to Meta; Quality Control routes Echo → Super → Meta for prior updates. Credit: ConsciOS architecture (this work); informed by the Viable System Model [4], [6] and hierarchical control frameworks [10].](preprint/figures/nested-conscios-architecture.png){ width=95% }
+![The Nested ConsciOS Architecture — nested control topology (Echo-Self, Super-Self, Meta-Self). Selector score = a·Utility + b·Coherence − g·Cost; Feedback aggregates at Super with a dotted slow branch to Meta; Quality Control routes Echo → Super → Meta for prior updates. Credit: ConsciOS architecture (this work); informed by the Viable System Model [4], [6] and hierarchical control frameworks [10].](figures/nested-conscios-architecture.png){ width=95% }
 
 ###### 3.4 Measurement Constructs and Testable Mappings
 
@@ -301,7 +301,7 @@ $P(\text{choose } F_i \mid S) \propto \exp\!\big(\tau^{-1}\, [\, a\,\mathbb{E}[U
 
 where tau is a temperature parameter.
 
-![Resonance Engine selection — composite scoring of expected utility, coherence, and cost (softmax or argmax; weights a, b, g). Credit: ConsciOS (this work); evidence/coherence framing relates to active inference [7], [12].](preprint/figures/resonance-engine-selector.png){ width=70% }
+![Resonance Engine selection — composite scoring of expected utility, coherence, and cost (softmax or argmax; weights a, b, g). Credit: ConsciOS (this work); evidence/coherence framing relates to active inference [7], [12].](figures/resonance-engine-selector.png){ width=70% }
 
 ###### 5.4 Emotional Guidance Scale (EGS) as an Internal Control Signal
 
@@ -317,7 +317,7 @@ EGS serves multiple roles:
 * Reward shaping signal for RL agents: small positive EGS deltas can be used as intrinsic reward components [14].
 * Stopping/holding criterion in Imagineer→Refine→Hold: sustained positive EGS over hold_T supports encoding of the chosen frame.
 
-![Emotional Guidance Scale (EGS) — discretized interoceptive control signal; used for Nearest-Lighter-Step guidance and intrinsic reward shaping. Credit: ConsciOS (this work); interoception foundations [13].](preprint/figures/emotional-guidance-scale.png){ width=60% }
+![Emotional Guidance Scale (EGS) — discretized interoceptive control signal; used for Nearest-Lighter-Step guidance and intrinsic reward shaping. Credit: ConsciOS (this work); interoception foundations [13].](figures/emotional-guidance-scale.png){ width=60% }
 
 ###### 5.5 FREQ Coin: Time-Integrated Coherence Currency
 
@@ -668,7 +668,7 @@ Experimental Protocols (full templates)
 
 * A.6 H5: Somatic Resonance Validation (human) — purpose: test whether subjective thoracic expansion/contraction correlates with physiological coherence and predicts frame selection. Design: within-subject time-series; collect HRV (time/frequency indices), optional EEG coherence, and rapid subjective reports of somatic feelings and EGS ladder; induce small local perturbations and log subsequent frame selection. Analysis: mixed models with lagged predictors; test added predictive value over utility and baseline affect.
 
-![Toy ablation heatmaps across b × a (reward, alignment rate, position-match). Axes: x = coherence weight b (low→high), y = utility weight a (low→high); g fixed. Illustrative demo; not a benchmark result. Credit: ConsciOS demo (this work).](preprint/figures/ablation-heatmaps.png){ width=60% }
+![Toy ablation heatmaps across b × a (reward, alignment rate, position-match). Axes: x = coherence weight b (low→high), y = utility weight a (low→high); g fixed. Illustrative demo; not a benchmark result. Credit: ConsciOS demo (this work).](figures/ablation-heatmaps.png){ width=60% }
 
 (Each template: stepwise procedure, required hardware/software, analysis scripts skeleton, expected effect sizes, power calculations placeholder.)
 
