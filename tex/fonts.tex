@@ -1,0 +1,34 @@
+% Font configuration for ConsciOS preprint (Tectonic/XeTeX)
+% Body: Inter; Headings/Title: Inter Tight SemiBold
+\usepackage{fontspec}
+
+% Prefer bundled local fonts to avoid system dependencies
+% Body: Inter (Regular/Bold/Italic/SemiBoldItalic) from tex/fonts/
+\setmainfont[
+  Path = tex/fonts/,
+  Extension = .ttf,
+  UprightFont = *-Regular,
+  BoldFont = *-Bold,
+  ItalicFont = *-Italic,
+  BoldItalicFont = *-SemiBoldItalic
+]{Inter_18pt}
+
+% Headings: Inter Tight SemiBold
+\setsansfont[
+  Path = tex/fonts/,
+  Extension = .ttf,
+  UprightFont = *-Regular,
+  BoldFont = *-SemiBold,
+  ItalicFont = *-Italic,
+  BoldItalicFont = *-SemiBoldItalic
+]{InterTight}
+
+% Apply sans/semibold to all section headings
+\usepackage{sectsty}
+\allsectionsfont{\sffamily\bfseries}
+
+% Make the document title use the heading font as well
+\usepackage{titling}
+\pretitle{\begin{center}\sffamily\bfseries\Huge}
+\posttitle{\par\end{center}}
+

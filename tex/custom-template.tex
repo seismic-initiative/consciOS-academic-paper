@@ -1,0 +1,166 @@
+\documentclass[12pt]{article}
+
+% Packages for fonts and encoding
+\usepackage{fontspec}
+\IfFontExistsTF{TeX Gyre Termes}{\setmainfont{TeX Gyre Termes}}{\setmainfont{Times New Roman}}
+
+% Colors (needed for \textcolor in footer)
+\usepackage{xcolor}
+
+% Page geometry
+\usepackage[margin=1in,headheight=30pt,headsep=18pt,footskip=30pt]{geometry}
+
+% Headers and footers
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+
+% Hyperlinks (load last to ensure proper anchors/bookmarks)
+\usepackage[hidelinks]{hyperref}
+\hypersetup{bookmarks=true,bookmarksopen=true,bookmarksnumbered=true,hypertexnames=false}
+\usepackage{bookmark}
+% Ensure anchors exist exactly at headings for bookmark jumps
+\usepackage{etoolbox}
+\makeatletter
+\pretocmd{\section}{\phantomsection}{}{ }
+\pretocmd{\subsection}{\phantomsection}{}{ }
+\pretocmd{\subsubsection}{\phantomsection}{}{ }
+\makeatother
+
+% Math and symbols
+\usepackage{amsmath,amssymb}
+% Micro-typography to smooth justification and fix overfull lines (XeTeX: no expansion)
+\usepackage{microtype}
+\setlength{\emergencystretch}{3em}
+
+% Tables and figures
+\usepackage{longtable,booktabs,array}
+\usepackage{calc}  % For table column calculations
+\usepackage{caption}
+% Make long tables more forgiving with line breaks
+\usepackage{etoolbox}
+\AtBeginEnvironment{longtable}{\sloppy}
+
+% Better spacing
+\setlength{\parskip}{0.5em}
+\setlength{\parindent}{0pt}
+
+% Pandoc list helper
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+
+% Title formatting with titlesec
+\usepackage{titlesec}
+\titleformat{\section}{\Large\bfseries\rmfamily}{\thesection}{1em}{}
+\titleformat{\subsection}{\large\bfseries\rmfamily}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\rmfamily}{\thesubsubsection}{1em}{}
+\titleformat{\paragraph}[block]{\normalsize\bfseries\rmfamily}{\theparagraph}{0.5em}{}
+\titleformat{\subparagraph}[block]{\normalsize\bfseries\rmfamily}{\thesubparagraph}{0.5em}{}
+
+% Spacing around headings
+\titlespacing*{\section}{0pt}{2ex plus 0.5ex minus 0.2ex}{1.5ex plus 0.2ex}
+\titlespacing*{\subsection}{0pt}{1.8ex plus 0.5ex minus 0.2ex}{1.2ex plus 0.2ex}
+\titlespacing*{\subsubsection}{0pt}{1.5ex plus 0.5ex minus 0.2ex}{1ex plus 0.2ex}
+\titlespacing*{\paragraph}{0pt}{1.2ex plus 0.5ex minus 0.2ex}{0.8ex plus 0.2ex}
+\titlespacing*{\subparagraph}{0pt}{1ex plus 0.5ex minus 0.2ex}{0.7ex plus 0.2ex}
+
+% Abstract formatting - centered title, widened to match title feel, normal text size
+\usepackage{abstract}
+\renewcommand{\abstractnamefont}{\normalfont\normalsize\bfseries\rmfamily\centering}
+\renewcommand{\abstracttextfont}{\normalfont\normalsize}
+% Make abstract width closer to title (85% textwidth -> ~7.5% margins)
+\setlength{\absleftindent}{0.075\textwidth}
+\setlength{\absrightindent}{0.075\textwidth}
+
+% Slightly more space before Abstract for breathing room
+\setlength{\absparindent}{0pt}
+\setlength{\abstitleskip}{0.5em}
+
+% Figure spacing and captions (IEEE style: "Fig." not "Figure")
+\DeclareCaptionLabelFormat{bold-label}{\textbf{#1 #2}}
+\captionsetup{labelformat=bold-label,labelsep=period,font=small}
+% IEEE style: use "Fig." instead of "Figure"
+\renewcommand{\figurename}{Fig.}
+\setlength{\abovecaptionskip}{14pt}
+\setlength{\belowcaptionskip}{8pt}
+\setlength{\textfloatsep}{28pt}
+\setlength{\intextsep}{24pt}
+
+% Table spacing
+\renewcommand{\arraystretch}{1.35}
+\setlength{\LTpre}{10pt}
+\setlength{\LTpost}{12pt}
+
+% Configure headers and footers
+\pagestyle{fancy}
+\fancyhf{}
+\fancyhead[C]{\small $title$}
+\renewcommand{\headrulewidth}{0.2pt}
+% Custom short footer rule and lowered page number
+\renewcommand{\footrulewidth}{0pt}
+\fancyfoot[C]{\raisebox{-4pt}{\thepage}}
+
+% First page style
+\fancypagestyle{plain}{%
+  \fancyhf{}
+  % Nudge logo slightly left (fine adjustment)
+  \fancyhead[L]{\raisebox{-9pt}{\hspace{-5.1pt}\includegraphics[height=32pt]{images/7.png}}}
+  \fancyhead[R]{\small 2025-10-08}
+  \renewcommand{\headrulewidth}{0.2pt}
+  \renewcommand{\footrulewidth}{0pt}
+  % Left-aligned short rule above the email (first page only)
+  \fancyfoot[L]{\raisebox{8pt}{\small\begin{minipage}[b]{0.60\textwidth}\raggedright \rule{0.3\textwidth}{0.2pt}\\[2pt]\textsuperscript{*}Email correspondence: \textcolor{blue}{\href{mailto:han.kay@goseismic.org}{han.kay@goseismic.org}}\end{minipage}}}
+  \fancyfoot[C]{\raisebox{-4pt}{\thepage}}
+}
+
+% Float behavior: keep figures with their sections and avoid lonely float pages
+\usepackage[section]{placeins}
+\renewcommand{\topfraction}{0.9}
+\renewcommand{\textfraction}{0.1}
+\renewcommand{\floatpagefraction}{0.85}
+\setcounter{topnumber}{2}
+\setcounter{totalnumber}{4}
+% Insert a barrier before each new section to prevent floats drifting too far (without breaking bookmarks)
+% Float barriers inserted automatically at each section by placeins
+
+% Increase space above title by adding extra vspace before maketitle block
+\makeatletter
+\renewcommand{\maketitle}{%
+  \thispagestyle{plain}%
+  \vspace*{4.0cm}% extra space from header lines
+  \begin{center}%
+    \parbox{0.85\textwidth}{\centering\LARGE\bfseries $title$}\par
+    \vspace{0.30cm}%
+    {\large\bfseries Kılıçhan (Han Kay) Kaynak$$^*$$\par}%
+    \vspace{0.20cm}%
+    {\normalsize Seismic Labs (Independent Researcher)\par}%
+  \end{center}%
+  \vspace{0.25cm}% tighter gap to abstract
+}
+\makeatother
+
+% Custom title block - DISABLE section numbering
+\setcounter{secnumdepth}{0}
+
+% (Removed duplicate maketitle definition)
+
+% Appendix figure numbering: reset counter and add "A" prefix
+\usepackage{chngcntr}
+\newcommand{\appendixfigures}{%
+  \setcounter{figure}{0}%
+  \renewcommand{\thefigure}{A\arabic{figure}}%
+}
+
+\begin{document}
+
+\maketitle
+
+$if(abstract)$
+\begin{abstract}
+\vspace{2pt}
+$abstract$
+\end{abstract}
+$endif$
+
+$body$
+
+\end{document}

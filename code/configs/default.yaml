@@ -1,0 +1,13 @@
+seed: 1
+episodes: 200
+beta: 1.0
+alpha: 0.5
+gamma: 0.1
+freq_on: true
+egs_on: true
+env:
+	name: shifty_grid
+	length: 21
+	shift_every: 50
+
+

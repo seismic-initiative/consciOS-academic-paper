@@ -1,0 +1,24 @@
+# Python virtual environment
+.venv/
+__pycache__/
+*.pyc
+
+# Build artifacts and outputs
+logs/
+plots/
+build/
+code/env/
+code/logs/
+code/plots/
+
+# Internal/private files
+han-notes
+paper-review.md
+images/
+codex/
+
+# Backup files
+*.backup
+
+# macOS
+.DS_Store

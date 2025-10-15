@@ -1,0 +1,14 @@
+Multi-license notice for this repository
+
+This repository is licensed by component, not under a single LICENSE file.
+The former MIT license for this project is no longer in effect.
+
+Please refer to the following files for current terms:
+
+- LICENSE-CODE — GNU Affero General Public License v3.0 (AGPLv3) for code.
+- LICENSE-TEXT — CC BY-NC-SA 4.0 for the paper text and generated PDFs.
+- LICENSE-FIGURES — Per-figure licensing summary (mostly CC BY-NC-SA 4.0; Figure 3 CC BY-NC-ND 4.0).
+- NOTICE — Attribution and commercial licensing contact.
+
+If you obtained a copy of this repository containing this file, you must
+comply with the applicable license per component as described above.

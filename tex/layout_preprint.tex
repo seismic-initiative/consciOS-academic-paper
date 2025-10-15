@@ -1,0 +1,70 @@
+% Layout adjustments to match arXiv-like style from reference
+% Note: hyperref must come first to avoid conflicts
+\usepackage[hidelinks]{hyperref}
+\usepackage[margin=1in,headheight=24pt,headsep=12pt,footskip=24pt]{geometry}
+\usepackage{fancyhdr}
+\usepackage{graphicx}
+\usepackage{lastpage}
+\usepackage{etoolbox}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{booktabs}
+
+% Setup will be done in AtBeginDocument after fancyhdr is loaded
+
+% Abstract heading centered, WIDER margins for abstract
+\usepackage{abstract}
+\renewcommand{\abstractnamefont}{\normalfont\large\bfseries\rmfamily\centering}
+\renewcommand{\abstracttextfont}{\normalfont\small}
+\setlength{\absleftindent}{0.25\textwidth}
+\setlength{\absrightindent}{0.25\textwidth}
+
+% More breathing room: increase paragraph spacing
+\setlength{\parskip}{0.5em}
+\setlength{\parindent}{0pt}
+
+% Increase space above figures and bold figure labels
+\usepackage{caption}
+\DeclareCaptionLabelFormat{bold-label}{\textbf{#1 #2}}
+\captionsetup{labelformat=bold-label,labelsep=colon}
+\setlength{\abovecaptionskip}{14pt}
+\setlength{\belowcaptionskip}{8pt}
+\setlength{\textfloatsep}{28pt}
+\setlength{\intextsep}{24pt}
+
+% Table spacing and wrapping improvements
+\renewcommand{\arraystretch}{1.25}
+\setlength{\LTpre}{10pt}
+\setlength{\LTpost}{12pt}
+
+% Customize title block formatting (titling package loaded in fonts_preprint.tex)
+\pretitle{\begin{center}\vspace{1.5cm}\LARGE\bfseries}
+\posttitle{\par\end{center}\vspace{0.3cm}}
+\preauthor{\begin{center}}
+\postauthor{\par\end{center}}
+\predate{\begin{center}\normalsize}
+\postdate{\end{center}\vspace{0.5cm}}
+
+% Configure headers and footers AFTER fancyhdr is loaded
+\AtBeginDocument{%
+  % Default fancy style for pages >1
+  \fancyhf{}
+  \fancyhead[C]{\small ConsciOS v1.0: A Viable Systems Architecture for Human and AI Alignment}
+  \renewcommand{\headrulewidth}{0.2pt}
+  \fancyfoot[C]{\thepage}
+  
+  % Plain style for first page
+  \fancypagestyle{plain}{%
+    \fancyhf{}
+    \fancyhead[L]{\raisebox{-6pt}{\hspace{-3pt}\includegraphics[height=28pt]{images/7.png}}}
+    \fancyhead[R]{\small 2025-10-08}
+    \renewcommand{\headrulewidth}{0.2pt}
+    \renewcommand{\footrulewidth}{0.2pt}
+    \fancyfoot[L]{\small $^*$Email correspondence: \textcolor{blue}{\href{mailto:han.kay@goseismic.org}{han.kay@goseismic.org}}}
+    \fancyfoot[C]{\thepage}
+  }
+  
+  % Apply fancy as default, plain on first page
+  \pagestyle{fancy}%
+  \thispagestyle{plain}%
+}
