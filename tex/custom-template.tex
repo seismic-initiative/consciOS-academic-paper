@@ -97,20 +97,19 @@
 \renewcommand{\headrulewidth}{0.2pt}
 % Custom short footer rule and lowered page number
 \renewcommand{\footrulewidth}{0pt}
-\fancyfoot[C]{\raisebox{-4pt}{\thepage}}
+\fancyfoot[C]{\raisebox{-6pt}{\thepage}}
 
 % First page style
 \fancypagestyle{plain}{%
   \fancyhf{}
-  % Nudge logo slightly left (fine adjustment)
-  % Header logo removed (image not available)
-  \fancyhead[L]{}
+  % Seismic logo on first page (left header, 40px ≈ 30pt high)
+  \fancyhead[L]{\raisebox{-7pt}{\hspace{-4pt}\includegraphics[height=30pt]{seismic-logo.png}}}
   \fancyhead[R]{\small 2025-10-08}
   \renewcommand{\headrulewidth}{0.2pt}
   \renewcommand{\footrulewidth}{0pt}
   % Left-aligned short rule above the email (first page only)
   \fancyfoot[L]{\raisebox{8pt}{\small\begin{minipage}[b]{0.60\textwidth}\raggedright \rule{0.3\textwidth}{0.2pt}\\[2pt]\textsuperscript{*}Email correspondence: \textcolor{blue}{\href{mailto:han.kay@goseismic.org}{han.kay@goseismic.org}}\end{minipage}}}
-  \fancyfoot[C]{\raisebox{-4pt}{\thepage}}
+  \fancyfoot[C]{\raisebox{-6pt}{\thepage}}
 }
 
 % Float behavior: keep figures with their sections and avoid lonely float pages
