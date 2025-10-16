@@ -9,7 +9,6 @@ pandoc \
   --from markdown+smart+implicit_figures+link_attributes \
   --to pdf \
   --pdf-engine=tectonic \
-  --shift-heading-level-by=-1 \
   --template=tex/custom-template.tex \
   --resource-path=. \
   --output preprint/ConsciOS_v1.0_preprint.pdf \
