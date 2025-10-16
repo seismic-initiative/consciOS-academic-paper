@@ -63,7 +63,7 @@ The Iceberg Model is a layered diagnostic heuristic that distinguishes observabl
 
 Consequence for the ConsciOS architecture: the Iceberg Model provides the causal ladder used to argue where and how "frequency" and "coherence" interventions (see Section 4) operate. Interventions framed as "raising frequency" are hypothesized to effect change by altering internal constraints (mental models) and thereby shifting structural dynamics that produce different patterns and events.
 
-![Iceberg Model — diagnostic hierarchy spanning Events, Patterns, Structures, and Mental Models (deeper layers → higher leverage: Transform → Redesign → Proact → React). Credit: adapted from systems-thinking literature [3], [5].](figures/iceberg-diagnostic-hierarchy.png){ width=90% }
+![Iceberg Model — diagnostic hierarchy spanning Events, Patterns, Structures, and Mental Models (deeper layers → higher leverage: Transform → Redesign → Proact → React). Credit: adapted from systems-thinking literature [3], [5].](figures/iceberg-diagnostic-hierarchy.png){ width=95% }
 
 ###### 2.2 The 7-Component Universal System Model (Architectural Template)
 
@@ -199,7 +199,7 @@ The decomposition maps onto classical viable-system structures: Echo-Self aligns
 
 Option-availability is the measurable set of viable actions perceived by an actor at time t. We operationalize Option-Availability as the effective action set size |A_eff(t)| weighted by subjective affordance scores. FREQ Coin is a derived, time-integrated coherence resource:
 
-$FREQ(t; \Delta) = \int_{t-\Delta}^{t} C(s)\, ds$
+$$FREQ(t; \Delta) = \int_{t-\Delta}^{t} C(s)\, ds$$
 
 where C(s) is the coherence metric at time s and Δ is a rolling window. Higher FREQ(t) predicts larger |A_eff(t)| and greater policy richness. Empirically, FREQ(t) can be proxied by sustained HRV coherence, EEG phase synchrony, or time-integrated match scores in agents. Measurement details and analysis code are provided in Appendix B.
 
@@ -236,9 +236,9 @@ We present Imagineer → Refine → Hold as an implementable macro loop used by 
 
 The Three-Self architecture yields specific empirical signatures:
 
-* Hierarchical advantage: Agents with explicit Echo/Super/Meta stratification will show faster recovery from distributional shifts and higher transfer performance than flat agents (testable in hierarchical RL benchmarks).
-* Kernel sensitivity: Manipulating Kernel inputs (e.g., altering affective feedback via HRV biofeedback) will causally influence Super-Self selection patterns and measured Option-Availability in human subjects.
-* Ego Autopilot dynamics: Under forced coherence degradation, behavior will converge to pi_safe with characteristic latency and retention statistics; modulation of Kernel thresholds theta_safe will shift the conservatism index.
+* **Hierarchical advantage:** Agents with explicit Echo/Super/Meta stratification will show faster recovery from distributional shifts and higher transfer performance than flat agents (testable in hierarchical RL benchmarks).
+* **Kernel sensitivity:** Manipulating Kernel inputs (e.g., altering affective feedback via HRV biofeedback) will causally influence Super-Self selection patterns and measured Option-Availability in human subjects.
+* **Ego Autopilot dynamics:** Under forced coherence degradation, behavior will converge to pi_safe with characteristic latency and retention statistics; modulation of Kernel thresholds theta_safe will shift the conservatism index.
 
 ###### 4.8 Simulation & Empirical Testbeds
 
@@ -264,16 +264,16 @@ Let S denote the current sensory/interoceptive state (possibly multi-modal) and 
 
 Several alternative coherence formulations are applicable depending on data modalities and modeling choices:
 
-* Evidence / log model evidence (Bayesian):
+* **Evidence / log model evidence (Bayesian):**
 
   $C(F_i; S) := \log p(S \mid F_i)$ — model evidence under the generative model implied by $F_i$ [7].
-* Negative divergence (information-theoretic):
+* **Negative divergence (information-theoretic):**
 
   $C(F_i; S) := -\, D_{\mathrm{KL}}\!\big[\, p_{\mathrm{obs}}(S)\,\|\, p(S\mid F_i)\,\big]$ — negative Kullback–Leibler divergence between observed state distribution and frame prediction.
-* Similarity (vector space):
+* **Similarity (vector space):**
 
   $C(F_i; S) := \cos\big(\phi(S),\, \phi(F_i)\big)$ — cosine similarity between feature embeddings $\phi(\cdot)$ of state and predicted state.
-* Composite coherence: a weighted sum of modality-specific coherences:
+* **Composite coherence:** a weighted sum of modality-specific coherences:
 
   $C(F_i; S) := \sum_m w_m\, C_m(F_i; S_m)$, where $m$ indexes modalities (interoception, vision, proprioception, policy performance) and $w_m$ are learned or meta-defined weights.
 
@@ -283,7 +283,7 @@ Coherence is normalized to a bounded scale (e.g., [0,1]) for downstream operatio
 
 Given a set of candidate frames {F_i} and current state S, the Resonance Engine selects the frame that maximizes an objective combining expected utility U(F_i) and coherence C(F_i; S). One canonical selection rule is:
 
-$\displaystyle \Pi^*(S) = \arg\max_{F_i} \big[ a\, \mathbb{E}[U(F_i)\mid S] + b\, C(F_i; S) - g\, \mathrm{Cost}(F_i) \big]$
+$$\Pi^*(S) = \arg\max_{F_i} \big[ a\, \mathbb{E}[U(F_i)\mid S] + b\, C(F_i; S) - g\, \mathrm{Cost}(F_i) \big]$$
 
 where:
 
@@ -297,7 +297,7 @@ Interpretation:
 * The Super-Self implements Pi* by ranking frames on this composite score. When b >> a, selection is coherence-driven (resonance priority); when a >> b, selection is utility-driven.
 * A stochastic softmax version permits exploration:
 
-$P(\text{choose } F_i \mid S) \propto \exp\!\big(\tau^{-1}\, [\, a\,\mathbb{E}[U] + b\, C - g\,\mathrm{Cost}\,] \big)$
+$$P(\text{choose } F_i \mid S) \propto \exp\!\big(\tau^{-1}\, [\, a\,\mathbb{E}[U] + b\, C - g\,\mathrm{Cost}\,] \big)$$
 
 where tau is a temperature parameter.
 
@@ -307,15 +307,15 @@ where tau is a temperature parameter.
 
 We operationalize the Emotional Guidance Scale (EGS) as a discretized or continuous scalar derived from interoceptive measures and subjective reports, serving as an internal proxy for momentary coherence/valence. Formally:
 
-EGS(t) := g(Phi_intero(S_t), rho(S_t))
+$$\text{EGS}(t) := g(\Phi_{\text{intero}}(S_t), \rho(S_t))$$
 
-where Phi_intero(·) is a vector of physiological interoceptive metrics (e.g., HRV indices, galvanic skin response, slow cortical potentials) and rho(S_t) is a short-horizon predictive fit metric (e.g., one-step prediction error). The mapping g(·) can be a learned regression (for agents) or a validated psychometric ladder (for humans). EGS is normalized to [−1, +1] (negative → low coherence/disfavor; positive → high coherence/endorsement) or to discrete bands (e.g., 1–10 ladder).
+where $\Phi_{\text{intero}}(\cdot)$ is a vector of physiological interoceptive metrics (e.g., HRV indices, galvanic skin response, slow cortical potentials) and rho(S_t) is a short-horizon predictive fit metric (e.g., one-step prediction error). The mapping g(·) can be a learned regression (for agents) or a validated psychometric ladder (for humans). EGS is normalized to [−1, +1] (negative → low coherence/disfavor; positive → high coherence/endorsement) or to discrete bands (e.g., 1–10 ladder).
 
 EGS serves multiple roles:
 
-* Local guidance heuristic for Echo-Self (nearest-lighter-step moves): if EGS rises after a local perturbation, the perturbation direction is favored.
-* Reward shaping signal for RL agents: small positive EGS deltas can be used as intrinsic reward components [14].
-* Stopping/holding criterion in Imagineer→Refine→Hold: sustained positive EGS over hold_T supports encoding of the chosen frame.
+* **Local guidance heuristic for Echo-Self (nearest-lighter-step moves):** if EGS rises after a local perturbation, the perturbation direction is favored.
+* **Reward shaping signal for RL agents:** small positive EGS deltas can be used as intrinsic reward components [14].
+* **Stopping/holding criterion in Imagineer→Refine→Hold:** sustained positive EGS over hold_T supports encoding of the chosen frame.
 
 ![Emotional Guidance Scale (EGS) — discretized interoceptive control signal; used for Nearest-Lighter-Step guidance and intrinsic reward shaping. Credit: ConsciOS (this work); interoception foundations [13].](figures/emotional-guidance-scale.png){ width=60% }
 
@@ -323,11 +323,11 @@ EGS serves multiple roles:
 
 Define instantaneous coherence for the active frame F* at time t as C*(t) := C(F*(t); S_t). FREQ Coin is a time-integral of coherence, possibly with discounting:
 
-$FREQ(t) := \int_{0}^{t} e^{-\lambda (t-s)}\, C^*(s)\, ds$
+$$FREQ(t) := \int_{0}^{t} e^{-\lambda (t-s)}\, C^*(s)\, ds$$
 
 where lambda >= 0 is a decay rate. In discrete time windows Delta:
 
-$FREQ_t = \sum_{k=0}^{N} e^{-\lambda k}\, C^*(t-k)$
+$$FREQ_t = \sum_{k=0}^{N} e^{-\lambda k}\, C^*(t-k)$$
 
 Interpretation and operational use:
 
@@ -390,7 +390,7 @@ This loop uses NLS (Nearest-Lighter-Step) as a bounded local search heuristic to
 
 Quality Control refers to the surfacing of misaligned priors when an agent holds a new high-coherence frame. Formally, let prior parameters be theta. On holding a new frame F_hold with high C and sustained FREQ, large prediction mismatches elsewhere can produce a gradient for updating theta:
 
-$\Delta\theta \propto \eta\, \nabla_{\!\theta}\, L_{\mathrm{total}}\!\big(\theta; D_{\mathrm{hold}}\big)$
+$$\Delta\theta \propto \eta\, \nabla_{\!\theta}\, L_{\mathrm{total}}\!\big(\theta; D_{\mathrm{hold}}\big)$$
 
 where L_total includes prediction error terms that were previously suppressed by low-coherence priors. Practically, this results in the surfacing of contradictions (beliefs that fail to explain held states) that must be revised. This update dynamic is formalized in active inference as precision-weighted prediction error minimization and corresponds to our observed "quality control" phenomenon [7].
 
@@ -627,10 +627,10 @@ We formalized a nested control architecture for consciousness, introduced resona
 
 ###### 9.2 Limitations
 
-* Measurement validity: physiological proxies (HRV, EEG) are noisy and context-sensitive.
-* Operational complexity: multi-modal coherence computation is computationally nontrivial.
-* Ethical concerns: privacy, signal manipulation, and reward-hacking risks in human-in-the-loop settings.
-* Novelty limits: several constructs are integrative—must avoid overclaiming novelty where existing work overlaps.
+* **Measurement validity:** physiological proxies (HRV, EEG) are noisy and context-sensitive.
+* **Operational complexity:** multi-modal coherence computation is computationally nontrivial.
+* **Ethical concerns:** privacy, signal manipulation, and reward-hacking risks in human-in-the-loop settings.
+* **Novelty limits:** several constructs are integrative—must avoid overclaiming novelty where existing work overlaps.
 
 ###### 9.3 Response Strategies
 
@@ -659,14 +659,14 @@ We present ConsciOS as a unified engineering program for designing and testing l
 
 Experimental Protocols (full templates)
 
-* A.1 H1: Structure-Change Leverage RCT (human) — objectives, sample sizes, randomization, outcome metrics, analysis plan, preregistration template.
-* A.2 H2: Feedback Coherence → Option-Availability (ecological sampling + lab micro-tasks).
-* A.3 H3: Nested Controller Benchmark (simulations) — environment specs, seeds, agent code skeleton, logging format.
-* A.4 H4: EGS as RLHF shaping (pilot human trials) — consent forms, pre-screening, safety checks, adversarial monitoring.
+* **A.1** H1: Structure-Change Leverage RCT (human) — objectives, sample sizes, randomization, outcome metrics, analysis plan, preregistration template.
+* **A.2** H2: Feedback Coherence → Option-Availability (ecological sampling + lab micro-tasks).
+* **A.3** H3: Nested Controller Benchmark (simulations) — environment specs, seeds, agent code skeleton, logging format.
+* **A.4** H4: EGS as RLHF shaping (pilot human trials) — consent forms, pre-screening, safety checks, adversarial monitoring.
 
-* A.5 Toy ablation (simulation demo) — purpose: verify telemetry and selector sensitivity. Setup: episodic context shifts; hierarchical agent with coherence-weighted selection (b, a sweeps); outputs: selection traces and aggregated heatmaps (reward, alignment rate, position-match proxy). Code: repository `code/` directory (env, agents, plots); figures are illustrative only.
+* **A.5** Toy ablation (simulation demo) — purpose: verify telemetry and selector sensitivity. Setup: episodic context shifts; hierarchical agent with coherence-weighted selection (b, a sweeps); outputs: selection traces and aggregated heatmaps (reward, alignment rate, position-match proxy). Code: repository `code/` directory (env, agents, plots); figures are illustrative only.
 
-* A.6 H5: Somatic Resonance Validation (human) — purpose: test whether subjective thoracic expansion/contraction correlates with physiological coherence and predicts frame selection. Design: within-subject time-series; collect HRV (time/frequency indices), optional EEG coherence, and rapid subjective reports of somatic feelings and EGS ladder; induce small local perturbations and log subsequent frame selection. Analysis: mixed models with lagged predictors; test added predictive value over utility and baseline affect.
+* **A.6** H5: Somatic Resonance Validation (human) — purpose: test whether subjective thoracic expansion/contraction correlates with physiological coherence and predicts frame selection. Design: within-subject time-series; collect HRV (time/frequency indices), optional EEG coherence, and rapid subjective reports of somatic feelings and EGS ladder; induce small local perturbations and log subsequent frame selection. Analysis: mixed models with lagged predictors; test added predictive value over utility and baseline affect.
 
 ![Toy ablation heatmaps across b × a (reward, alignment rate, position-match). Axes: x = coherence weight b (low→high), y = utility weight a (low→high); g fixed. Illustrative demo; not a benchmark result. Credit: ConsciOS demo (this work).](figures/ablation-heatmaps.png){ width=60% }
 
@@ -674,13 +674,15 @@ Experimental Protocols (full templates)
 
 ### Appendix B — Measurement Instruments & Analysis Pipelines
 
-* B.1 HRV measurement spec (sensor types, sampling rates, preprocessing).
-* B.2 EEG coherence pipeline (preprocessing, epoching, Phase-Locking Value (PLV) / Inter-Subject Correlation (ISC) metrics).
-* B.3 Coherence computation code (KLD, log-evidence, embedding cosine examples) — code repository: https://github.com/seismic-initiative/consciOS-paper
-* B.4 Policy logging schema & Super-Self selection trace format (JavaScript Object Notation (JSON) schema).
-* B.5 Statistical analysis pipelines (time-series mixed models, Granger causality / vector autoregression (VAR), causal estimation approach).
+* **B.1** HRV measurement spec (sensor types, sampling rates, preprocessing).
+* **B.2** EEG coherence pipeline (preprocessing, epoching, Phase-Locking Value (PLV) / Inter-Subject Correlation (ISC) metrics).
+* **B.3** Coherence computation code (KLD, log-evidence, embedding cosine examples) — code repository: https://github.com/seismic-initiative/consciOS-paper
+* **B.4** Policy logging schema & Super-Self selection trace format (JavaScript Object Notation (JSON) schema).
+* **B.5** Statistical analysis pipelines (time-series mixed models, Granger causality / vector autoregression (VAR), causal estimation approach).
 
 ### Appendix C — Public Translation & Operationalization
+
+**Table 1.** ConsciOS terminology mapping — public aliases, canonical equivalents, operational definitions, and key citations for cross-disciplinary translation and empirical testing.
 
 | ConsciOS Alias | Canonical Equivalent (scholarly) | Operational definition / measures | Key citations |
 |---|---|---|---|
@@ -696,6 +698,8 @@ Experimental Protocols (full templates)
 | Ego Autopilot | Fallback safety controller | Reversion frequency, conservatism index | [3]–[4] |
 | The Iceberg | Diagnostic hierarchy | Event / pattern / structure / belief measures | [3], [5] |
 | The 7 Flows | Inputs / Processes / Outputs / Feedback / Actors / Constraints | Throughput, latency, bottlenecks | systems engineering |
+
+**Detailed Terminology Mappings.** The following entries provide expanded definitions, operational measures, and suggested citations for each ConsciOS term listed in Table 1. These detailed mappings support reproducible operationalization and citation tracking across experimental protocols.
 
 ConsciOS term — Echo-Self
 - Canonical equivalent (scholarly): Embodied controller / short-horizon perception–action loop

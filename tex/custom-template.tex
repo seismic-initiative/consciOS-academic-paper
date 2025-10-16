@@ -16,8 +16,19 @@
 
 % Hyperlinks (load last to ensure proper anchors/bookmarks)
 \usepackage[hidelinks]{hyperref}
-\hypersetup{bookmarks=true,bookmarksopen=true,bookmarksnumbered=true,hypertexnames=false}
+\hypersetup{
+  bookmarks=true,
+  bookmarksopen=true,
+  bookmarksnumbered=true,
+  bookmarksdepth=4,
+  pdfstartview=FitH,
+  breaklinks=true
+}
 \usepackage{bookmark}
+
+% Fix section depth for proper navigation
+\setcounter{tocdepth}{4}
+\setcounter{secnumdepth}{4}
 % Ensure anchors exist exactly at headings for bookmark jumps
 \usepackage{etoolbox}
 \makeatletter
@@ -82,8 +93,18 @@
 \renewcommand{\figurename}{Fig.}
 \setlength{\abovecaptionskip}{14pt}
 \setlength{\belowcaptionskip}{8pt}
-\setlength{\textfloatsep}{28pt}
+\setlength{\textfloatsep}{16pt}
 \setlength{\intextsep}{24pt}
+
+% IEEE equation spacing (approximately one line above/below display equations)
+\setlength{\abovedisplayskip}{12pt plus 3pt minus 6pt}
+\setlength{\belowdisplayskip}{12pt plus 3pt minus 6pt}
+\setlength{\abovedisplayshortskip}{6pt plus 3pt minus 3pt}
+\setlength{\belowdisplayshortskip}{6pt plus 3pt minus 3pt}
+
+% List spacing (reduce excessive space before/after lists)
+\usepackage{enumitem}
+\setlist{topsep=6pt, partopsep=0pt, itemsep=3pt, parsep=3pt}
 
 % Table spacing
 \renewcommand{\arraystretch}{1.35}
@@ -97,19 +118,19 @@
 \renewcommand{\headrulewidth}{0.2pt}
 % Custom short footer rule and lowered page number
 \renewcommand{\footrulewidth}{0pt}
-\fancyfoot[C]{\raisebox{-6pt}{\thepage}}
+\fancyfoot[C]{\raisebox{-7pt}{\thepage}}
 
 % First page style
 \fancypagestyle{plain}{%
   \fancyhf{}
   % Seismic logo on first page (left header, 40px ≈ 30pt high)
-  \fancyhead[L]{\raisebox{-7pt}{\hspace{-4pt}\includegraphics[height=30pt]{seismic-logo.png}}}
+  \fancyhead[L]{\raisebox{-8pt}{\hspace{-5pt}\includegraphics[height=30pt]{seismic-logo.png}}}
   \fancyhead[R]{\small 2025-10-08}
   \renewcommand{\headrulewidth}{0.2pt}
   \renewcommand{\footrulewidth}{0pt}
   % Left-aligned short rule above the email (first page only)
   \fancyfoot[L]{\raisebox{8pt}{\small\begin{minipage}[b]{0.60\textwidth}\raggedright \rule{0.3\textwidth}{0.2pt}\\[2pt]\textsuperscript{*}Email correspondence: \textcolor{blue}{\href{mailto:han.kay@goseismic.org}{han.kay@goseismic.org}}\end{minipage}}}
-  \fancyfoot[C]{\raisebox{-6pt}{\thepage}}
+  \fancyfoot[C]{\raisebox{-7pt}{\thepage}}
 }
 
 % Float behavior: keep figures with their sections and avoid lonely float pages
