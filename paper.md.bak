@@ -87,13 +87,13 @@ To move from diagnosis to design we adopt a 7-component functional template that
 
 We propose an explicit mapping that grounds ConsciOS terms in the 7-component template and the Iceberg diagnostic levels. This mapping converts public-facing metaphors into testable engineering constructs.
 
-* **Mental Models/Beliefs ↔ Internal Constraints** (actor priors, policy parameters).
+* Mental Models/Beliefs ↔ Internal Constraints (actor priors, policy parameters).
   * Example research variable: belief coherence score computed from structured inventories or posterior concentration in a Bayesian agent.
-* **Structures ↔ External Constraints & Designed Processes** (architectural code, institutional rules).
+* Structures ↔ External Constraints & Designed Processes (architectural code, institutional rules).
   * Example research variable: structural coupling metrics (graph modularity, information throughput).
-* **Patterns ↔ Emergent Process Dynamics** (habit loops, recurrent attractors).
+* Patterns ↔ Emergent Process Dynamics (habit loops, recurrent attractors).
   * Example research variable: pattern persistence index from time-series decomposition.
-* **Events ↔ Outputs** (observable actions, rendered frames, sensor measurements).
+* Events ↔ Outputs (observable actions, rendered frames, sensor measurements).
   * Example research variable: event frequency, latency, or categorical outcome distributions.
 
 Mapping to ConsciOS canonical elements (formal definitions):
@@ -118,11 +118,11 @@ We formulate a small set of testable hypotheses that follow from the mapping. Th
 
 **H5 (Somatic Resonance as a Coherence Signal):** Subjective reports of somatic markers (felt expansion/contraction in the thoracic region) will correlate with physiological coherence proxies (e.g., HRV) and will predict subsequent policy/frame selection above and beyond expected utility terms.
 
-Each hypothesis is followed by a suggested experimental probe in Appendix A. In short: H1/H2 are suitable for human subject experiments (laboratory + ecological sampling); H3/H4 can be evaluated in simulated agents and human-in-the-loop agent training regimes.
+Each hypothesis is followed by a suggested experimental probe in the Appendix. In short: H1/H2 are suitable for human subject experiments (laboratory + ecological sampling); H3/H4 can be evaluated in simulated agents and human-in-the-loop agent training regimes.
 
 <!-- 2.5 Related Work Pointers removed in final version; integrated into Section 6. -->
 
-Having established the diagnostic ladder (Iceberg) and the architectural template (7-component model) and mapped them to the ConsciOS constructs, the paper now proceeds to specify the nested controller architecture (Echo-Self / Super-Self / Meta-Self) and the Resonance Engine mechanics that implement selection among pre-rendered policy frames. The next section formalizes these components and derives the algorithmic protocols used in Appendix A.
+Having established the diagnostic ladder (Iceberg) and the architectural template (7-component model) and mapped them to the ConsciOS constructs, the paper now proceeds to specify the nested controller architecture (Echo-Self / Super-Self / Meta-Self) and the Resonance Engine mechanics that implement selection among pre-rendered policy frames. The next section formalizes these components and derives the algorithmic protocols used in the Appendix.
 
 ### 3. Nested Reality: A Multi-Layer Ontology for System Design
 
@@ -406,9 +406,9 @@ where L_total includes prediction error terms that were previously suppressed by
 
 ###### 5.10 Implementation Notes and Instrumentation
 
-* **Human studies:** EGS mapping requires a validated ladder instrument plus physiological proxies (HRV spectral components; EEG coherence). Use mixed models to analyze within-subject time series with temporally lagged coherence predictors.
-* **Agent implementations:** use modular hierarchical RL frameworks (options framework, meta-RL) with coherence function approximators (neural density estimators or ensemble predictive models) and treat FREQ as a persistent meta-state feature.
-* **Reproducibility:** provide code templates for coherence computation (cosine embedding version, KLD version) and for ResonanceEngine pseudocode in a public repository (Appendix B references).
+* Human studies: EGS mapping requires a validated ladder instrument plus physiological proxies (HRV spectral components; EEG coherence). Use mixed models to analyze within-subject time series with temporally lagged coherence predictors.
+* Agent implementations: use modular hierarchical RL frameworks (options framework, meta-RL) with coherence function approximators (neural density estimators or ensemble predictive models) and treat FREQ as a persistent meta-state feature.
+* Reproducibility: provide code templates for coherence computation (cosine embedding version, KLD version) and for ResonanceEngine pseudocode in a public repository (Appendix B references).
 
 <!-- Section 5.11 removed; content is consolidated in Section 6. -->
 
@@ -477,13 +477,13 @@ where L_total includes prediction error terms that were previously suppressed by
 
 ###### 6.7 Synthesis and Research Agenda
 
-**Short-term priorities (0–6 months):**
+Short-term priorities (0–6 months):
 
 * Formalize coherence metrics (KLD, log evidence, embedding similarity) and publish benchmarks.
 * Implement hierarchical RL agents with a FREQ gating mechanism and run transfer/adaptation benchmarks.
 * Run pilot human studies validating EGS mapping to HRV and predictive power for option-availability.
 
-**Medium-term priorities (6–24 months):**
+Medium-term priorities (6–24 months):
 
 * Human-in-the-loop RLHF trials using EGS as shaping signal with strong safety monitoring.
 * Cross-domain replication (lab, ecological sampling, simulated agents) and release of open datasets and code.
@@ -501,10 +501,10 @@ This section translates the ConsciOS architecture into concrete architectures, e
 
 ###### 7.2 Mapping ConsciOS to AI Agent Architectures
 
-* **Embodied controller / low-level policy (Echo-Self):** Implemented as a fast policy module or low-level controller in robotics or simulated agents (e.g., policy pi_e parameterized by neural networks or model predictive controllers). It handles sensory inputs and immediate action loops and exposes short-horizon telemetry (latencies, action entropy). (Place: agent S1–S3) [10].
-* **Supervisory controller / policy selector (Super-Self):** Implemented as a mid-level manager that selects or composes policies from a policy library or a set of options. Technically realized as a policy-over-options, gating network, or a learned selector (e.g., meta-controller). It evaluates coherence metrics and expected utility and implements the ResonanceEngine selection rule. (Place: agent S4) [11].
-* **Meta-controller / prior generator (Meta-Self):** Implemented as a meta-learning or prior-shaping module: e.g., an outer loop that updates priors, regularizers, or initializations (MAML-style, population-based training, or distributional priors). It controls long-term adaptation, governance constraints, and objective shaping. (Place: agent S5) [10].
-* **Centralized coherence estimator, discretized affect index, and time-integrated coherence resource (Kernel / EGS / FREQ):** Implement as telemetry and meta-features. Kernel = centralized coherence estimator; EGS = scalar intrinsic signal (learned/regressed from internal state plus proxy interoceptive metrics); FREQ = persistent meta-state (time-integrated coherence). These variables inform gating, reward shaping, and policy unlocking dynamics.
+* Embodied controller / low-level policy (Echo-Self): Implemented as a fast policy module or low-level controller in robotics or simulated agents (e.g., policy pi_e parameterized by neural networks or model predictive controllers). It handles sensory inputs and immediate action loops and exposes short-horizon telemetry (latencies, action entropy). (Place: agent S1–S3) [10].
+* Supervisory controller / policy selector (Super-Self): Implemented as a mid-level manager that selects or composes policies from a policy library or a set of options. Technically realized as a policy-over-options, gating network, or a learned selector (e.g., meta-controller). It evaluates coherence metrics and expected utility and implements the ResonanceEngine selection rule. (Place: agent S4) [11].
+* Meta-controller / prior generator (Meta-Self): Implemented as a meta-learning or prior-shaping module: e.g., an outer loop that updates priors, regularizers, or initializations (MAML-style, population-based training, or distributional priors). It controls long-term adaptation, governance constraints, and objective shaping. (Place: agent S5) [10].
+* Centralized coherence estimator, discretized affect index, and time-integrated coherence resource (Kernel / EGS / FREQ): Implement as telemetry and meta-features. Kernel = centralized coherence estimator; EGS = scalar intrinsic signal (learned/regressed from internal state plus proxy interoceptive metrics); FREQ = persistent meta-state (time-integrated coherence). These variables inform gating, reward shaping, and policy unlocking dynamics.
 
 ###### 7.3 Concrete Technical Experiments (Agentic Testbeds)
 
@@ -539,46 +539,46 @@ Below are prioritized experiments that produce defensible empirical claims and a
 
 ###### 7.4 Prototype Applications and Pilot Domains
 
-* **Simulated agent research labs:** immediate testbeds for Experiments 1–4 using OpenAI Gym variants, ProcGen, or custom procedurally generated environments.
-* **Robotics / embodied agents:** Echo-Self controllers in mobile platforms; Super-Self for task selection (home assistant switching tasks); pilot complexity gating with FREQ in battery-constrained robots.
-* **Smart home context:** integrate EGS proxies from occupant devices (consented HRV wearables) to adapt lighting/temperature policy selection — low-risk pilot if privacy/consent is addressed.
-* **Organizational decision support:** simulate Echo/Super/Meta as team roles in collaborative platforms to test policy selection and governance before automation.
+* Simulated agent research labs: immediate testbeds for Experiments 1–4 using OpenAI Gym variants, ProcGen, or custom procedurally generated environments.
+* Robotics / embodied agents: Echo-Self controllers in mobile platforms; Super-Self for task selection (home assistant switching tasks); pilot complexity gating with FREQ in battery-constrained robots.
+* Smart home context: integrate EGS proxies from occupant devices (consented HRV wearables) to adapt lighting/temperature policy selection — low-risk pilot if privacy/consent is addressed.
+* Organizational decision support: simulate Echo/Super/Meta as team roles in collaborative platforms to test policy selection and governance before automation.
 
 ###### 7.5 Governance, Safety, and Ethical Considerations
 
-* **Measurement validity & privacy:** physiological signals (HRV, EGS proxies) are sensitive. All human data collection must follow IRB, GDPR/CCPA compliance, and local regulation. Use minimal necessary telemetry and strong anonymization.
-* **Reward hacking & manipulation:** EGS used as shaping reward may be manipulated. Implement adversarial detection, signal plausibility checks, and human override.
-* **Interpretability & auditability:** Design Super-Self and Meta-Self with explicit logging, provenance, and interpretable selection traces to enable audits and post-hoc explanations for policy selection.
-* **Safety layering:** Ego Autopilot / pi_safe must be robust to adversarial inputs and designed by principled safety engineering (conservative defaults, kill-switches, oversight loops).
-* **Governance pathways:** include stakeholder review boards, transparency reports, and open pre-registration of human trials; consider third-party audits for high-impact deployments.
+* Measurement validity & privacy: physiological signals (HRV, EGS proxies) are sensitive. All human data collection must follow IRB, GDPR/CCPA compliance, and local regulation. Use minimal necessary telemetry and strong anonymization.
+* Reward hacking & manipulation: EGS used as shaping reward may be manipulated. Implement adversarial detection, signal plausibility checks, and human override.
+* Interpretability & auditability: Design Super-Self and Meta-Self with explicit logging, provenance, and interpretable selection traces to enable audits and post-hoc explanations for policy selection.
+* Safety layering: Ego Autopilot / pi_safe must be robust to adversarial inputs and designed by principled safety engineering (conservative defaults, kill-switches, oversight loops).
+* Governance pathways: include stakeholder review boards, transparency reports, and open pre-registration of human trials; consider third-party audits for high-impact deployments.
 
 ###### 7.6 Metrics, Benchmarks and Evaluation Protocol
 
-**Suggested canonical metrics for pilot evaluation:**
+Suggested canonical metrics for pilot evaluation:
 
-* **Agent performance:** cumulative reward, normalized performance relative to baseline.
-* **Adaptation:** adaptation latency post distributional shift, recovery ratio.
-* **Option-availability proxy:** measured |A_eff(t)| via simulated affordance enumeration or human reported affordance counts (experience sampling).
-* **Coherence correlation:** Spearman/Pearson correlation of coherence metric C with EGS proxies and with downstream performance improvements.
-* **FREQ impact:** correlation and causal estimates (instrumental variable or randomized threshold experiments) of FREQ on policy unlocking and sustained performance.
-* **Safety metrics:** frequency of pi_safe engagements, rate of adversarial detection triggers, human override rate.
+* Agent performance: cumulative reward, normalized performance relative to baseline.
+* Adaptation: adaptation latency post distributional shift, recovery ratio.
+* Option-availability proxy: measured |A_eff(t)| via simulated affordance enumeration or human reported affordance counts (experience sampling).
+* Coherence correlation: Spearman/Pearson correlation of coherence metric C with EGS proxies and with downstream performance improvements.
+* FREQ impact: correlation and causal estimates (instrumental variable or randomized threshold experiments) of FREQ on policy unlocking and sustained performance.
+* Safety metrics: frequency of pi_safe engagements, rate of adversarial detection triggers, human override rate.
 
 ###### 7.7 Roadmap for Pilots, Datasets, and Reproducibility
 
-* **Phase 0 (0–2 months):** Code templates for ResonanceEngine, coherence functions (cosine/embedding/KLD), and FREQ computation; seed simulated envs.
-* **Phase 1 (2–6 months):** Run Experiment 1–2 in simulation; open-source code and baseline datasets; preprint results for community review.
-* **Phase 2 (6–12 months):** Human pilot for Experiment 3 under IRB; release anonymized datasets and analysis scripts; produce safety/adversarial analysis.
-* **Phase 3 (12–24 months):** Domain pilots (robotics, smart home) with external audits and governance reporting; refine Meta-Self governance patterns for organizational deployment.
+* Phase 0 (0–2 months): Code templates for ResonanceEngine, coherence functions (cosine/embedding/KLD), and FREQ computation; seed simulated envs.
+* Phase 1 (2–6 months): Run Experiment 1–2 in simulation; open-source code and baseline datasets; preprint results for community review.
+* Phase 2 (6–12 months): Human pilot for Experiment 3 under IRB; release anonymized datasets and analysis scripts; produce safety/adversarial analysis.
+* Phase 3 (12–24 months): Domain pilots (robotics, smart home) with external audits and governance reporting; refine Meta-Self governance patterns for organizational deployment.
 
 ###### 7.8 Funding, Community, and Research Agenda
 
-**Priority funding areas:**
+Priority funding areas:
 
-* **Core research:** hierarchical agent benchmarks and coherence metric standardization.
-* **Measurement science:** validating EGS mappings across populations and contexts.
-* **Safety research:** reward-shaping failure modes, adversarial robustness of EGS signals, and governance tooling.
+* Core research: hierarchical agent benchmarks and coherence metric standardization.
+* Measurement science: validating EGS mappings across populations and contexts.
+* Safety research: reward-shaping failure modes, adversarial robustness of EGS signals, and governance tooling.
 
-**Community building:**
+Community building:
 
 * Open dataset & baseline repo for coherence and FREQ experiments.
 * Incentivized hackathons & shared benchmarks to accelerate reproducibility.
@@ -596,19 +596,19 @@ This section translates architecture into practice: design patterns, organizatio
 
 ###### 8.2 Design Patterns & Practices
 
-* **Pattern: Nested Controller Decomposition** — adopt Echo/Super/Meta separation in system design; log policy families, selection traces, and coherence signals.
-* **Pattern: Coherence-gated complexity** — use FREQ thresholds to gate high-cost capabilities (compute, autonomy, privilege escalation).
-* **Pattern: Rapid Feedback Loops** — implement EGS proxies or synthetic analogues that feed short-horizon controllers for real-time micro-adjustments.
+* Pattern: Nested Controller Decomposition — adopt Echo/Super/Meta separation in system design; log policy families, selection traces, and coherence signals.
+* Pattern: Coherence-gated complexity — use FREQ thresholds to gate high-cost capabilities (compute, autonomy, privilege escalation).
+* Pattern: Rapid Feedback Loops — implement EGS proxies or synthetic analogues that feed short-horizon controllers for real-time micro-adjustments.
 
 ###### 8.3 Organizational Applications
 
-* **Team design:** map Echo roles to operational teams, Super roles to coordination roles, Meta roles to governance/strategy; instrument team decision logs as policy traces.
-* **Product design:** staged feature unlocking by FREQ; adaptability modules for user interfaces based on measured EGS proxies.
+* Team design: map Echo roles to operational teams, Super roles to coordination roles, Meta roles to governance/strategy; instrument team decision logs as policy traces.
+* Product design: staged feature unlocking by FREQ; adaptability modules for user interfaces based on measured EGS proxies.
 
 ###### 8.4 Training & Curricula
 
-* **Curriculum:** imagineer practices → coherence training → quality control drills. Translate book protocols into training modules (micro-exercises with measurement).
-* **Operator tooling:** dashboards that show coherence, FREQ balances, and option-availability metrics to support decision making.
+* Curriculum: imagineer practices → coherence training → quality control drills. Translate book protocols into training modules (micro-exercises with measurement).
+* Operator tooling: dashboards that show coherence, FREQ balances, and option-availability metrics to support decision making.
 
 ###### 8.5 Implementation Checklist
 
@@ -649,9 +649,9 @@ We formalized a nested control architecture for consciousness, introduced resona
 
 ### 10. Conclusion
 
-This paper presents ConsciOS as a unified engineering program for consciousness as a designable system—one that can be modeled, instrumented, and improved through rigorous experimentation. We contribute three core elements: (i) a nested three-layer control architecture (Echo-Self, Super-Self, Meta-Self) that decomposes conscious agency into testable subsystems grounded in viable systems theory, hierarchical reinforcement learning, and active inference; (ii) coherence-based selection mechanisms (Resonance Engine, EGS, FREQ Coin) that operationalize affect and interoceptive feedback as measurable control signals; and (iii) a comprehensive empirical roadmap with detailed experimental protocols, canonical terminology mappings, and reproducible code references.
+We present ConsciOS as a unified engineering program for designing and testing layered control architectures that bridge human introspective practice and formal AI systems. By grounding narrative constructs (Echo-Self, EGS, FREQ Coin) in canonical control, inferential, and affective literatures, ConsciOS aims to create reproducible experiments and practical pilots that advance our ability to design safer, more adaptive hybrid systems. We invite researchers, engineers, and practitioners to implement, test, and critique the proposed models and to collaborate on open benchmarks and datasets.
 
-ConsciOS reframes consciousness as an engineering challenge—testable, instrumentable, and governable. The architecture offers practical affordances for AI alignment through interpretable hierarchical decomposition, affect-informed policy selection, and built-in safety mechanisms. It also bridges ancient contemplative practices and modern computational frameworks, translating metaphorical wisdom into falsifiable hypotheses. We invite researchers, engineers, and practitioners to implement, test, and critique the proposed models and to collaborate on open benchmarks and datasets.
+**Summary.** ConsciOS re-frames consciousness as an engineering problem—testable, instrumentable, and governable. The concluding note emphasizes collaborative implementation and rigorous evaluation.
 
 \appendixfigures
 
@@ -660,7 +660,7 @@ ConsciOS reframes consciousness as an engineering challenge—testable, instrume
 Experimental Protocols (full templates)
 
 * **A.1** H1: Structure-Change Leverage RCT (human) — objectives, sample sizes, randomization, outcome metrics, analysis plan, preregistration template.
-* **A.2** H2: Feedback Coherence → Option-Availability — ecological sampling + lab micro-tasks.
+* **A.2** H2: Feedback Coherence → Option-Availability (ecological sampling + lab micro-tasks).
 * **A.3** H3: Nested Controller Benchmark (simulations) — environment specs, seeds, agent code skeleton, logging format.
 * **A.4** H4: EGS as RLHF shaping (pilot human trials) — consent forms, pre-screening, safety checks, adversarial monitoring.
 
@@ -719,68 +719,59 @@ Experimental Protocols (full templates)
 * **Operational definition / measures:** Encodes long-horizon priors and the generative space of policies. Measures: prior concentration, transfer/meta-learning performance.
 * **Suggested citation & placement:** Meta-learning; Sections 4.1 & 7 [10].
 
-**ConsciOS term — Kernel**
+ConsciOS term — Kernel
+- Canonical equivalent (scholarly): Central integrative controller / interoceptive hub
+- Operational definition / measures: Focal interoceptive/state-confidence signal. Human proxy: HRV, interoceptive accuracy. Agent proxy: estimator precision.
+- Suggested citation & placement: Interoception literature; Methods/Appendix B [13].
 
-* **Canonical equivalent (scholarly):** Central integrative controller / interoceptive hub
-* **Operational definition / measures:** Focal interoceptive/state-confidence signal. Human proxy: HRV, interoceptive accuracy. Agent proxy: estimator precision.
-* **Suggested citation & placement:** Interoception literature; Methods/Appendix B [13].
+ConsciOS term — Emotional Guidance Scale (EGS)
+- Canonical equivalent (scholarly): Discretized affect index / interoceptive feedback variable
+- Operational definition / measures: Laddered affect used as internal control signal. Measures: self-report ladder, HRV, EEG proxies, affect classification.
+- Suggested citation & placement: Affect & interoception reviews; Section 5.2 & Appendix A [13].
 
-**ConsciOS term — Emotional Guidance Scale (EGS)**
+ConsciOS term — Resonance Engine
+- Canonical equivalent (scholarly): Coherence-based selector / evidence-matching selector
+- Operational definition / measures: Chooses policy frame with maximal coherence; match-score or Bayesian evidence metric. Measures: coherence score, selection confidence.
+- Suggested citation & placement: Active inference / predictive processing; Section 5.1 [7].
 
-* **Canonical equivalent (scholarly):** Discretized affect index / interoceptive feedback variable
-* **Operational definition / measures:** Laddered affect used as internal control signal. Measures: self-report ladder, HRV, EEG proxies, affect classification.
-* **Suggested citation & placement:** Affect & interoception reviews; Section 5.2 & Appendix A [13].
+ConsciOS term — FREQ Coin
+- Canonical equivalent (scholarly): Sustained coherence resource metric (operational currency)
+- Operational definition / measures: Time-integrated coherence units (e.g., area under coherence curve). Measures: cumulative coherence over window, option-availability proxy.
+- Suggested citation & placement: Section 5 & Appendix B.
 
-**ConsciOS term — Resonance Engine**
+ConsciOS term — Quality Control
+- Canonical equivalent (scholarly): Belief-surfacing / error-signal model revision
+- Operational definition / measures: Frequency of internal model updates following coherence shifts. Measures: belief entropy, update rate, error magnitude.
+- Suggested citation & placement: Active inference & Bayesian update; Section 5.4 [7].
 
-* **Canonical equivalent (scholarly):** Coherence-based selector / evidence-matching selector
-* **Operational definition / measures:** Chooses policy frame with maximal coherence; match-score or Bayesian evidence metric. Measures: coherence score, selection confidence.
-* **Suggested citation & placement:** Active inference / predictive processing; Section 5.1 [7].
+ConsciOS term — Policy/Frame Library
+- Canonical equivalent (scholarly): Pre-compiled policy / scenario library
+- Operational definition / measures: Library of precomputed policy frames/timelines for selection. Measures: policy diversity, match scores, retrieval latency.
+- Suggested citation & placement: Meta-RL & simulation; Sections 5.1 / 4.4 [10], [11].
 
-**ConsciOS term — FREQ Coin**
+ConsciOS term — Ego Autopilot
+- Canonical equivalent (scholarly): Fallback safety controller / homeostatic default policy
+- Operational definition / measures: Low-variance survival policy under low-coherence. Measures: reversion frequency, conservatism index.
+- Suggested citation & placement: Control theory & safety; Section 4.2 [3]–[4].
 
-* **Canonical equivalent (scholarly):** Sustained coherence resource metric (operational currency)
-* **Operational definition / measures:** Time-integrated coherence units (e.g., area under coherence curve). Measures: cumulative coherence over window, option-availability proxy.
-* **Suggested citation & placement:** Section 5 & Appendix B.
+ConsciOS term — The Iceberg
+- Canonical equivalent (scholarly): Diagnostic hierarchy: Event → Pattern → Structure → Mental Model
+- Operational definition / measures: Layer-specific tests: event logs (time-series), pattern indices, structural graphs, belief inventories.
+- Suggested citation & placement: Systems thinking (Meadows; Senge); Section 2.1 [3], [5].
 
-**ConsciOS term — Quality Control**
+ConsciOS term — The 7 Flows
+- Canonical equivalent (scholarly): Inputs → Processes → Outputs → Feedback → Actors → External Constraints → Internal Constraints
+- Operational definition / measures: Systems decomposition—each flow has standard metrics (throughput, latency, bottleneck).
+- Suggested citation & placement: Systems engineering & cybernetics; Section 2.2.
 
-* **Canonical equivalent (scholarly):** Belief-surfacing / error-signal model revision
-* **Operational definition / measures:** Frequency of internal model updates following coherence shifts. Measures: belief entropy, update rate, error magnitude.
-* **Suggested citation & placement:** Active inference & Bayesian update; Section 5.4 [7].
-
-**ConsciOS term — Policy/Frame Library**
-
-* **Canonical equivalent (scholarly):** Pre-compiled policy / scenario library
-* **Operational definition / measures:** Library of precomputed policy frames/timelines for selection. Measures: policy diversity, match scores, retrieval latency.
-* **Suggested citation & placement:** Meta-RL & simulation; Sections 5.1 / 4.4 [10], [11].
-
-**ConsciOS term — Ego Autopilot**
-
-* **Canonical equivalent (scholarly):** Fallback safety controller / homeostatic default policy
-* **Operational definition / measures:** Low-variance survival policy under low-coherence. Measures: reversion frequency, conservatism index.
-* **Suggested citation & placement:** Control theory & safety; Section 4.2 [3]–[4].
-
-**ConsciOS term — The Iceberg**
-
-* **Canonical equivalent (scholarly):** Diagnostic hierarchy: Event → Pattern → Structure → Mental Model
-* **Operational definition / measures:** Layer-specific tests: event logs (time-series), pattern indices, structural graphs, belief inventories.
-* **Suggested citation & placement:** Systems thinking (Meadows; Senge); Section 2.1 [3], [5].
-
-**ConsciOS term — The 7 Flows**
-
-* **Canonical equivalent (scholarly):** Inputs → Processes → Outputs → Feedback → Actors → External Constraints → Internal Constraints
-* **Operational definition / measures:** Systems decomposition—each flow has standard metrics (throughput, latency, bottleneck).
-* **Suggested citation & placement:** Systems engineering & cybernetics; Section 2.2.
-
-**Notes:**
+Notes:
 
 * Canonical terms are primary in methods and analytic language. ConsciOS aliases are pedagogical—they appear in parentheses at first mention and in Appendix C for public readers.
 * For each term, Appendix B contains measurement protocols and recommended instruments (e.g., HRV measurement specs, EEG coherency pipeline, policy-switch logging format).
 
 <!-- C.1 Public notes removed in final version. -->
 
-### Appendix D — Viable System Model (VSM) Mapping
+### Appendix D — Viable System Model (VSM) mapping
 
 VSM Systems and ConsciOS alignment (concise):
 
@@ -788,7 +779,7 @@ VSM Systems and ConsciOS alignment (concise):
 * VSM S4 (Intelligence/adaptation/future planning) → Super-Self (policy/frame selection; supervisory control).
 * VSM S5 (Policy/identity/governance) → Meta-Self (long-horizon priors; identity constraints; slow adaptation).
 
-**Notes:** Echo corresponds to operational bandwidth and local control; Super aggregates feedback and selects among policy families; Meta encodes priors and identity constraints that shape policy space and slow updates. This mapping is heuristic but aligns with canonical VSM roles [4], [6].
+Notes: Echo corresponds to operational bandwidth and local control; Super aggregates feedback and selects among policy families; Meta encodes priors and identity constraints that shape policy space and slow updates. This mapping is heuristic but aligns with canonical VSM roles [4], [6].
 
 ### References
 

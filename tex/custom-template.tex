@@ -14,7 +14,40 @@
 \usepackage{fancyhdr}
 \usepackage{graphicx}
 
-% Hyperlinks (load last to ensure proper anchors/bookmarks)
+% Math and symbols
+\usepackage{amsmath,amssymb}
+
+% Tables and figures
+\usepackage{longtable,booktabs,array}
+\usepackage{calc}  % For table column calculations
+\usepackage{caption}
+
+% etoolbox for various hooks
+\usepackage{etoolbox}
+
+% Title formatting with titlesec (MUST come before hyperref)
+\usepackage{titlesec}
+\titleformat{\section}{\Large\bfseries\rmfamily}{\thesection}{1em}{}
+\titleformat{\subsection}{\Large\bfseries\rmfamily}{\thesubsection}{1em}{}
+\titleformat{\subsubsection}{\normalsize\bfseries\rmfamily}{\thesubsubsection}{1em}{}
+\titleformat{\paragraph}[block]{\normalsize\bfseries\rmfamily}{\theparagraph}{0.5em}{}
+\titleformat{\subparagraph}[block]{\normalsize\bfseries\rmfamily}{\thesubparagraph}{0.5em}{}
+
+% Spacing around headings (more space above than below for visual hierarchy)
+\titlespacing*{\section}{0pt}{4ex plus 1ex minus 0.5ex}{1.2ex plus 0.3ex}
+\titlespacing*{\subsection}{0pt}{3ex plus 0.8ex minus 0.3ex}{1ex plus 0.2ex}
+\titlespacing*{\subsubsection}{0pt}{2ex plus 0.5ex minus 0.2ex}{0.8ex plus 0.2ex}
+\titlespacing*{\paragraph}{0pt}{1.5ex plus 0.5ex minus 0.2ex}{0.8ex plus 0.2ex}
+\titlespacing*{\subparagraph}{0pt}{1.2ex plus 0.5ex minus 0.2ex}{0.7ex plus 0.2ex}
+
+% List spacing (MUST come before hyperref)
+\usepackage{enumitem}
+\setlist{topsep=6pt, partopsep=0pt, itemsep=6pt, parsep=3pt}
+% Override pandoc's tightlist command
+\providecommand{\tightlist}{%
+  \setlength{\itemsep}{6pt}\setlength{\parskip}{3pt}}
+
+% Hyperlinks (load AFTER titlesec and enumitem for proper anchors/bookmarks)
 \usepackage[hidelinks]{hyperref}
 \hypersetup{
   bookmarks=true,
@@ -29,50 +62,17 @@
 % Fix section depth for proper navigation
 \setcounter{tocdepth}{4}
 \setcounter{secnumdepth}{4}
-% Ensure anchors exist exactly at headings for bookmark jumps
-\usepackage{etoolbox}
-\makeatletter
-\pretocmd{\section}{\phantomsection}{}{ }
-\pretocmd{\subsection}{\phantomsection}{}{ }
-\pretocmd{\subsubsection}{\phantomsection}{}{ }
-\makeatother
-
-% Math and symbols
-\usepackage{amsmath,amssymb}
-% Micro-typography to smooth justification and fix overfull lines (XeTeX: no expansion)
-\usepackage{microtype}
-\setlength{\emergencystretch}{3em}
-
-% Tables and figures
-\usepackage{longtable,booktabs,array}
-\usepackage{calc}  % For table column calculations
-\usepackage{caption}
-% Make long tables more forgiving with line breaks
-\usepackage{etoolbox}
-\AtBeginEnvironment{longtable}{\sloppy}
 
 % Better spacing
 \setlength{\parskip}{0.5em}
 \setlength{\parindent}{0pt}
 
-% Pandoc list helper
-\providecommand{\tightlist}{%
-  \setlength{\itemsep}{0pt}\setlength{\parskip}{0pt}}
+% Micro-typography to smooth justification
+\usepackage{microtype}
+\setlength{\emergencystretch}{3em}
 
-% Title formatting with titlesec
-\usepackage{titlesec}
-\titleformat{\section}{\Large\bfseries\rmfamily}{\thesection}{1em}{}
-\titleformat{\subsection}{\large\bfseries\rmfamily}{\thesubsection}{1em}{}
-\titleformat{\subsubsection}{\normalsize\bfseries\rmfamily}{\thesubsubsection}{1em}{}
-\titleformat{\paragraph}[block]{\normalsize\bfseries\rmfamily}{\theparagraph}{0.5em}{}
-\titleformat{\subparagraph}[block]{\normalsize\bfseries\rmfamily}{\thesubparagraph}{0.5em}{}
-
-% Spacing around headings
-\titlespacing*{\section}{0pt}{2ex plus 0.5ex minus 0.2ex}{1.5ex plus 0.2ex}
-\titlespacing*{\subsection}{0pt}{1.8ex plus 0.5ex minus 0.2ex}{1.2ex plus 0.2ex}
-\titlespacing*{\subsubsection}{0pt}{1.5ex plus 0.5ex minus 0.2ex}{1ex plus 0.2ex}
-\titlespacing*{\paragraph}{0pt}{1.2ex plus 0.5ex minus 0.2ex}{0.8ex plus 0.2ex}
-\titlespacing*{\subparagraph}{0pt}{1ex plus 0.5ex minus 0.2ex}{0.7ex plus 0.2ex}
+% Make long tables more forgiving with line breaks
+\AtBeginEnvironment{longtable}{\sloppy}
 
 % Abstract formatting - centered title, widened to match title feel, normal text size
 \usepackage{abstract}
@@ -102,10 +102,6 @@
 \setlength{\abovedisplayshortskip}{6pt plus 3pt minus 3pt}
 \setlength{\belowdisplayshortskip}{6pt plus 3pt minus 3pt}
 
-% List spacing (reduce excessive space before/after lists)
-\usepackage{enumitem}
-\setlist{topsep=6pt, partopsep=0pt, itemsep=3pt, parsep=3pt}
-
 % Table spacing
 \renewcommand{\arraystretch}{1.35}
 \setlength{\LTpre}{10pt}
@@ -124,7 +120,7 @@
 \fancypagestyle{plain}{%
   \fancyhf{}
   % Seismic logo on first page (left header, 40px ≈ 30pt high)
-  \fancyhead[L]{\raisebox{-8pt}{\hspace{-5pt}\includegraphics[height=30pt]{seismic-logo.png}}}
+  \fancyhead[L]{\raisebox{-8pt}{\hspace{-6pt}\includegraphics[height=30pt]{seismic-logo.png}}}
   \fancyhead[R]{\small 2025-10-08}
   \renewcommand{\headrulewidth}{0.2pt}
   \renewcommand{\footrulewidth}{0pt}
