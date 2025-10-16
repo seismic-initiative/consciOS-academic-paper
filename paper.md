@@ -33,7 +33,7 @@ This paper is primarily a conceptual and experimental design contribution. We pr
 * Simulation experiments: hierarchical reinforcement learning (HRL) and meta-learning benchmarks with controlled distributional shifts, reproducible environment seeds, and clearly logged policy metadata (policy families, selection traces, reward histories).
 * Hybrid human-in-the-loop tests: human labeling or EGS signals used as shaping rewards or policy selection cues for agent training; evaluation on transfer and human-perceived agency.
 
-The compact Methods Overview above orients the reader; full procedural detail required for replication (sample sizes, instrumentation settings, pre-registration templates, and code references) is provided in Appendix A and Appendix B.
+The compact Methods Overview above orients the reader; full procedural detail required for replication (sample sizes, instrumentation settings, pre-registration templates, and code references) is provided in Appendix A and Appendix B. Reference implementations and analysis code are available in the project repository [15].
 
 We present canonical terminology in the Methods and provide ConsciOS aliases in Appendix C to preserve interdisciplinary clarity and public translation without compromising experimental reproducibility.
 
@@ -201,7 +201,7 @@ Option-availability is the measurable set of viable actions perceived by an acto
 
 $$FREQ(t; \Delta) = \int_{t-\Delta}^{t} C(s)\, ds$$
 
-where C(s) is the coherence metric at time s and Δ is a rolling window. Higher FREQ(t) predicts larger |A_eff(t)| and greater policy richness. Empirically, FREQ(t) can be proxied by sustained HRV coherence, EEG phase synchrony, or time-integrated match scores in agents. Measurement details and analysis code are provided in Appendix B.
+where C(s) is the coherence metric at time s and Δ is a rolling window. Higher FREQ(t) predicts larger |A_eff(t)| and greater policy richness. Empirically, FREQ(t) can be proxied by sustained HRV coherence, EEG phase synchrony, or time-integrated match scores in agents. Measurement details and analysis code are provided in Appendix B [15].
 
 ###### 4.6 Algorithmic Sketch: Imagineer → Refine → Hold (Formal Pseudocode)
 
@@ -450,7 +450,7 @@ where L_total includes prediction error terms that were previously suppressed by
 
 ###### 6.4 Hierarchical Reinforcement Learning & Meta-Learning
 
-**Summary.** Hierarchical RL (options framework) and meta-learning formalize how agents learn temporally abstract actions and how priors or meta-policies accelerate transfer and adaptation (Sutton & Barto; recent HRL surveys) [10], [11], [15]. Switching controllers and gated meta-policies provide the algorithmic ground for layered control.
+**Summary.** Hierarchical RL (options framework) and meta-learning formalize how agents learn temporally abstract actions and how priors or meta-policies accelerate transfer and adaptation (Sutton & Barto; recent HRL surveys) [10], [11], [16]. Switching controllers and gated meta-policies provide the algorithmic ground for layered control.
 
 **ConsciOS Mapping.** Echo/Super/Meta map naturally to low-level option executors, mid-level policy selectors, and meta-learning priors. The FREQ Coin concept operationalizes the resource gating that unlocks higher-complexity frames, analogous to budgeted computation or curiosity rewards.
 
@@ -460,7 +460,7 @@ where L_total includes prediction error terms that were previously suppressed by
 
 ###### 6.5 Human-in-the-Loop Learning, RLHF, and AI Alignment
 
-**Summary.** Reinforcement learning from human feedback (RLHF) and human-in-the-loop systems use user signals to shape agent policies. Recent alignment work emphasizes hybrid architectures combining human priors, interpretability constraints, and intrinsic agent objectives [16], [17].
+**Summary.** Reinforcement learning from human feedback (RLHF) and human-in-the-loop systems use user signals to shape agent policies. Recent alignment work emphasizes hybrid architectures combining human priors, interpretability constraints, and intrinsic agent objectives [17], [18].
 
 **ConsciOS Mapping.** EGS signals and Kernel proxies are candidate human feedback channels for RLHF—fast, affect-informed signals that can shape agent selection and policy priors. The nested controller architecture provides an alignment affordance: Super-Self and Meta-Self can serve as interpretability and governance layers enforcing safety constraints.
 
@@ -676,7 +676,7 @@ Experimental Protocols (full templates)
 
 * **B.1** HRV measurement spec (sensor types, sampling rates, preprocessing).
 * **B.2** EEG coherence pipeline (preprocessing, epoching, Phase-Locking Value (PLV) / Inter-Subject Correlation (ISC) metrics).
-* **B.3** Coherence computation code (KLD, log-evidence, embedding cosine examples) — code repository: https://github.com/seismic-initiative/consciOS-paper
+* **B.3** Coherence computation code (KLD, log-evidence, embedding cosine examples) — code repository [15]
 * **B.4** Policy logging schema & Super-Self selection trace format (JavaScript Object Notation (JSON) schema).
 * **B.5** Statistical analysis pipelines (time-series mixed models, Granger causality / vector autoregression (VAR), causal estimation approach).
 
@@ -808,11 +808,13 @@ Notes: Echo corresponds to operational bandwidth and local control; Super aggreg
 
 [14] M. Barthet, A. Khalifa, A. Liapis, and G. N. Yannakakis, "Play with Emotion: Affect-Driven Reinforcement Learning," in 2022 10th International Conference on Affective Computing and Intelligent Interaction (ACII), 2022. doi:10.1109/ACII55700.2022.9953894.
 
-[15] S. Pateria, B. Subagdja, A.-H. Tan, and C. Quek, "Hierarchical Reinforcement Learning: A Comprehensive Survey," ACM Computing Surveys, 54(5), 1–35, 2021. doi:10.1145/3453160.
+[15] Seismic Initiative, "ConsciOS v1.0: A Viable Systems Architecture—Code Repository," Source code, 2025. Available: https://github.com/seismic-initiative/consciOS-academic-paper. Accessed: Oct. 16, 2025.
 
-[16] L. Ouyang, J. Wu, X. Jiang, et al., "Training language models to follow instructions with human feedback," in Advances in Neural Information Processing Systems (NeurIPS), 2022. arXiv:2203.02155.
+[16] S. Pateria, B. Subagdja, A.-H. Tan, and C. Quek, "Hierarchical Reinforcement Learning: A Comprehensive Survey," ACM Computing Surveys, 54(5), 1–35, 2021. doi:10.1145/3453160.
 
-[17] K. Friston, L. Da Costa, D. Hafner, C. Hesp, and T. Parr, "Active Inference: The Free Energy Principle in Mind, Brain, and Behavior." MIT Press, 2022. doi:10.7551/mitpress/12441.001.0001.
+[17] L. Ouyang, J. Wu, X. Jiang, et al., "Training language models to follow instructions with human feedback," in Advances in Neural Information Processing Systems (NeurIPS), 2022. arXiv:2203.02155.
+
+[18] K. Friston, L. Da Costa, D. Hafner, C. Hesp, and T. Parr, "Active Inference: The Free Energy Principle in Mind, Brain, and Behavior." MIT Press, 2022. doi:10.7551/mitpress/12441.001.0001.
 
 <!-- Change log removed from preprint. Version history is tracked in git and release notes. -->
 
