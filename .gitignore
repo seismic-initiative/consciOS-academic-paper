@@ -19,7 +19,9 @@ codex/
 seismic-logo.png
 
 # Backup files
-*.backup
+*.backup*
+*.bak*
+*~
 
 # macOS
 .DS_Store
