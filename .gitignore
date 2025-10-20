@@ -12,11 +12,8 @@ code/logs/
 code/plots/
 
 # Internal/private files
-han-notes
-paper-review.md
 images/
 codex/
-seismic-logo.png
 
 # Backup files
 *.backup*
