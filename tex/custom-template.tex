@@ -29,7 +29,12 @@
 \usepackage{needspace}
 
 % Title formatting with titlesec (MUST come before hyperref)
-\usepackage{titlesec}
+% Load WITHOUT nobottomtitles to allow our needspace logic to control page breaks
+% Use titlesec's built-in nobottomtitles* to keep headings off the final ~2 lines automatically
+\usepackage[nobottomtitles*]{titlesec}
+%% Space threshold before a heading triggers a page break (here ≈ 15 % of text height ≈ 2 lines)
+% Tighter threshold (~2 lines)
+\renewcommand{\bottomtitlespace}{0.05\textheight}
 % Standard formatting: # → \section, ## → \subsection, #### → \subsubsection
 \titleformat{\section}{\Large\bfseries\rmfamily}{\thesection}{1em}{}
 \titleformat{\subsection}{\large\bfseries\rmfamily}{\thesubsection}{1em}{}
@@ -38,19 +43,19 @@
 \titleformat{\subparagraph}[block]{\normalsize\bfseries\rmfamily}{\thesubparagraph}{0.5em}{}
 
 % Spacing around headings (more space above than below for visual hierarchy)
-\titlespacing*{\section}{0pt}{4ex plus 1ex minus 0.5ex}{1.2ex plus 0.3ex}
-\titlespacing*{\subsection}{0pt}{3ex plus 0.8ex minus 0.3ex}{1ex plus 0.2ex}
-\titlespacing*{\subsubsection}{0pt}{2ex plus 0.5ex minus 0.2ex}{0.8ex plus 0.2ex}
-\titlespacing*{\paragraph}{0pt}{1.5ex plus 0.5ex minus 0.2ex}{0.8ex plus 0.2ex}
-\titlespacing*{\subparagraph}{0pt}{1.2ex plus 0.5ex minus 0.2ex}{0.7ex plus 0.2ex}
+% Using fixed spacing (no plus/minus) so LaTeX can't stretch to avoid breaks
+\titlespacing*{\section}{0pt}{4ex}{1.2ex}
+\titlespacing*{\subsection}{0pt}{3ex}{1ex}
+\titlespacing*{\subsubsection}{0pt}{2ex}{0.8ex}
+\titlespacing*{\paragraph}{0pt}{1.5ex}{0.8ex}
+\titlespacing*{\subparagraph}{0pt}{1.2ex}{0.7ex}
 
-% Prevent orphaned section headings (ensure sufficient content follows)
-% Modified needspace to end with \vskip 0pt to avoid conflict with section commands
-% Values: section needs ~4 lines (for section+subsection cases), subsection/subsubsection need less
-\newcommand{\safeneedspace}[1]{\needspace{#1}\vskip 0pt}
-\pretocmd{\section}{\safeneedspace{2.5\baselineskip}}{}{}
-\pretocmd{\subsection}{\safeneedspace{2.0\baselineskip}}{}{}
-\pretocmd{\subsubsection}{\safeneedspace{1.5\baselineskip}}{}{}
+% Reduce section penalties to allow page breaks before sections
+\makeatletter
+\@secpenalty=-50
+\makeatother
+
+% (Removed manual needspace hooks – titlesec now handles bottom headings)
 
 % List spacing (MUST come before hyperref)
 \usepackage{enumitem}
@@ -83,15 +88,16 @@
 \raggedbottom
 
 % Widow and orphan control (prevent single lines at top/bottom of pages)
-\widowpenalty=10000
-\clubpenalty=10000
-\displaywidowpenalty=10000
+% Reduced from 10000 to allow needspace to work properly
+\widowpenalty=150
+\clubpenalty=150
+\displaywidowpenalty=150
 
 % Prevent page breaks after bold paragraph headers (like "Experiment 2:" or "**Echo-Self**")
-\usepackage{xparse}
-% Add penalty after textbf to discourage breaks
-\let\oldtextbf\textbf
-\renewcommand{\textbf}[1]{\oldtextbf{#1}\nopagebreak[4]}
+% Removed \nopagebreak as it was overriding needspace logic
+% \usepackage{xparse}
+% \let\oldtextbf\textbf
+% \renewcommand{\textbf}[1]{\oldtextbf{#1}\nopagebreak[4]}
 
 % Micro-typography to smooth justification
 \usepackage{microtype}

@@ -12,8 +12,7 @@ code/logs/
 code/plots/
 
 # Internal/private files
-images/
-codex/
+seismic-logo.png
 
 # Backup files
 *.backup*

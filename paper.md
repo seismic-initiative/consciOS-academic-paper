@@ -583,8 +583,6 @@ Below are prioritized experiments that produce defensible empirical claims and a
 
 ConsciOS provides a layered architecture that is especially well-suited for hybrid human-agent systems where rapid, affective feedback and clear governance are necessary. The proposed experiments are designed to deliver concrete evidence about whether coherence-based gating and affect-informed shaping improve adaptability, transfer, and alignment in hierarchical agents. The next step is to implement the simulation testbeds (Phase 0/1) and publish reproducible baselines that enable community scrutiny.
 
-\clearpage
-
 # 8. Becoming a Conscious Architect — Practical Implications for Design
 
 ## 8.1 Purpose and Scope
