@@ -12,5 +12,5 @@ pandoc \
   --template=tex/custom-template.tex \
   --resource-path=. \
   --output preprint/ConsciOS_v1.0_preprint.pdf \
-  paper.md
+  paper-v1.0.md
 echo "Wrote preprint/ConsciOS_v1.0_preprint.pdf"
