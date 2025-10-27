@@ -146,8 +146,17 @@
 \fancyhead[C]{\small $title$}
 \renewcommand{\headrulewidth}{0.2pt}
 % Custom short footer rule and page number
-\renewcommand{\footrulewidth}{0pt}
-\fancyfoot[C]{\raisebox{-6pt}{\thepage}}
+  \renewcommand{\footrulewidth}{0pt}
+  \fancyfoot[C]{\raisebox{-6pt}{\thepage}}
+
+% Improved footnote spacing for better readability
+\setlength{\footnotesep}{12pt}  % Space between separator and footnote text
+\setlength{\skip\footins}{12pt} % Space between main text and separator
+\makeatletter
+\renewcommand\footnoterule{%
+  \hrule width 0.4\columnwidth height 0.2pt % Standard academic width
+}
+\makeatother
 
 % First page style
 \fancypagestyle{plain}{%
@@ -157,8 +166,8 @@
   \fancyhead[R]{\small 2025-08-14}
   \renewcommand{\headrulewidth}{0.2pt}
   \renewcommand{\footrulewidth}{0pt}
-  % Left-aligned short rule above the email (first page only)
-  \fancyfoot[L]{\raisebox{8pt}{\small\begin{minipage}[b]{0.60\textwidth}\raggedright \rule{0.3\textwidth}{0.2pt}\\[2pt]\textsuperscript{*}Email correspondence: \textcolor{blue}{\href{mailto:han.kay@goseismic.org}{han.kay@goseismic.org}}\end{minipage}}}
+  % Email correspondence footnote on first page only (IEEE style with asterisk)
+  \fancyfoot[L]{\raisebox{12pt}{\small\begin{minipage}[b]{0.60\textwidth}\raggedright\rule{0.4\columnwidth}{0.2pt}\\[1pt]\textsuperscript{*}Email correspondence: \textcolor{blue}{\href{mailto:han.kay@goseismic.org}{han.kay@goseismic.org}}\end{minipage}}}
   \fancyfoot[C]{\raisebox{-6pt}{\thepage}}
 }
 
@@ -211,6 +220,9 @@ $abstract$
 \end{abstract}
 \vspace{-0.5\baselineskip}
 $endif$
+
+\clearpage
+\pagestyle{fancy}
 
 $body$
 
