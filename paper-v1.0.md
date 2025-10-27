@@ -672,8 +672,14 @@ Experimental Protocols (full templates)
 
 * **A.6** H5: Somatic Resonance Validation (human) — **Purpose:** test whether subjective thoracic expansion/contraction correlates with physiological coherence and predicts frame selection. **Design:** within-subject time-series; collect HRV (time/frequency indices), optional EEG coherence, and rapid subjective reports of somatic feelings and EGS ladder; induce small local perturbations and log subsequent frame selection. **Analysis:** mixed models with lagged predictors; test added predictive value over utility and baseline affect.
 
-![Toy ablation heatmaps across b × a (reward, alignment rate, position-match). Axes: x = coherence weight b (low→high), y = utility weight a (low→high); g fixed. Illustrative demo; not a benchmark result. Credit: ConsciOS demo (this work).](figures/ablation-heatmaps.png){ width=80% }
-
+```{=latex}
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.8\textwidth]{figures/ablation-heatmaps.png}
+\caption{Toy ablation heatmaps across b × a (reward, alignment rate, position-match). Axes: x = coherence weight b (low→high), y = utility weight a (low→high); g fixed. Illustrative demo; not a benchmark result. Credit: ConsciOS demo (this work).}
+\vspace{-8pt}
+\end{figure}
+```
 Each template includes the stepwise procedure, required hardware/software, analysis scripts skeleton, expected effect sizes, and a power-calculations placeholder.
 
 ## Appendix B — Measurement Instruments & Analysis Pipelines
@@ -684,7 +690,6 @@ Each template includes the stepwise procedure, required hardware/software, analy
 * **B.4** Policy logging schema & Super-Self selection trace format (JavaScript Object Notation (JSON) schema).
 * **B.5** Statistical analysis pipelines (time-series mixed models, Granger causality / vector autoregression (VAR), causal estimation approach).
 
-\clearpage
 ## Appendix C — Public Translation & Operationalization
 
 **Table 1.** ConsciOS terminology mapping — public aliases, canonical equivalents, operational definitions, and key citations for cross-disciplinary translation and empirical testing.

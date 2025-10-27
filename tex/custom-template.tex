@@ -152,6 +152,8 @@
 % Improved footnote spacing for better readability
 \setlength{\footnotesep}{12pt}  % Space between separator and footnote text
 \setlength{\skip\footins}{12pt} % Space between main text and separator
+% Prevent footnotes from splitting across pages
+\interfootnotelinepenalty=10000
 \makeatletter
 \renewcommand\footnoterule{%
   \hrule width 0.4\columnwidth height 0.2pt % Standard academic width
@@ -173,6 +175,7 @@
 
 % Float behavior: keep figures near their references while allowing flexible placement
 \usepackage{placeins}
+\usepackage{float}
 \renewcommand{\topfraction}{0.85}
 \renewcommand{\bottomfraction}{0.70}
 \renewcommand{\textfraction}{0.15}
