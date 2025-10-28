@@ -24,7 +24,7 @@ The compact Methods Overview above orients the reader; full procedural detail re
 
 ## 1.2 Notation & Metric Preamble
 
-We use the following symbols consistently throughout the paper. Pi (Π) denotes a candidate policy frame; C(F; S) is a coherence metric between frame F and current state S; U(F) is task-dependent expected utility; Cost(F) denotes computational/energetic costs; tau (τ) is a softmax temperature; lambda (λ) is a decay rate in cumulative measures. Option-Availability (OA) is operationalized as an effective action set size weighted by calibrated affordance scores.
+We use the following symbols consistently throughout the paper. Pi (Π) denotes a candidate policy frame; C(F; S) is a coherence metric between frame F and current state S; U(F) is task-dependent expected utility; Cost(F) denotes computational/energetic costs; tau (τ) is a softmax temperature; lambda (λ) is a decay rate in cumulative measures. The selection rule (formalized in Section 5.3) uses tunable meta-weights $a$, $b$, $g$ to balance utility, coherence, and computational cost. Option-Availability (OA) is operationalized as an effective action set size weighted by calibrated affordance scores.
 
 **Operationalizing Option-Availability:** enumerate perceived viable actions at time $t$, assign a subjective affordance score $a_i \in [0,1]$ for each option $i$ using a brief calibration, and compute $OA(t) = \sum_i a_i$. For simulated agents, proxy $OA$ by action entropy with an affordance calibration factor. These definitions support reproducible comparisons across ablations and pilots.
 
@@ -139,7 +139,7 @@ We formalize the Nested ConsciOS Architecture as a nested control topology:
 
 This nested topology is isomorphic to viable-system decompositions in organizational cybernetics—lower operational units are supervised by higher intelligence while a meta-governor maintains identity and global objectives [11], [13]. Importantly, the ontology treats interplay between layers as bidirectional: the Meta-Self constrains policy families top-down, while feedback and Quality Control mechanisms induce bottom-up belief revision.
 
-![The Nested ConsciOS Architecture — nested control topology (Echo-Self, Super-Self, Meta-Self). Selector score = a·Utility + b·Coherence − g·Cost; Feedback aggregates at Super with a dotted slow branch to Meta; Quality Control routes Echo → Super → Meta for prior updates. Credit: ConsciOS architecture (this work); informed by the Viable System Model [11], [13] and hierarchical control frameworks [18], [19].](figures/nested-conscios-architecture.png){ width=100% }
+![The Nested ConsciOS Architecture — nested control topology (Echo-Self, Super-Self, Meta-Self). Selector score $= a \cdot \text{Utility} + b \cdot \text{Coherence} - g \cdot \text{Cost}$; Feedback aggregates at Super with a dotted slow branch to Meta; Quality Control routes Echo → Super → Meta for prior updates. Credit: ConsciOS architecture (this work); informed by the Viable System Model [11], [13] and hierarchical control frameworks [18], [19].](figures/nested-conscios-architecture.png){ width=100% }
 
 ## 3.4 Measurement Constructs and Testable Mappings
 
@@ -169,10 +169,10 @@ We propose a hierarchical controller decomposition comprising three nested contr
 
 ## 4.2 Formal Definitions
 
-* **Embodied Controller (Echo-Self):** an agent module implementing short-horizon perception–action loops. Formally, the Echo-Self maintains a state estimate x_t and applies policy pi_e(a|x_t; theta_e) to produce actions a_t minimizing a local cost function L_e over short horizons H_e. Measures: reaction latency tau, short-horizon cumulative reward R_e(H_e), and action entropy H[pi_e] [18]. (Operationalized in Appendix B.)
+* **Embodied Controller (Echo-Self):** an agent module implementing short-horizon perception–action loops. Formally, the Echo-Self maintains a state estimate $x_t$ and applies policy $\pi_e(a|x_t; \theta_e)$ to produce actions $a_t$ minimizing a local cost function $L_e$ over short horizons $H_e$. Measures: reaction latency $\tau$, short-horizon cumulative reward $R_e(H_e)$, and action entropy $H[\pi_e]$ [18] (operationalized in Appendix B).
 * **Supervisory Controller / Policy Selector (Super-Self):** a mid-horizon controller that aggregates feedback signals over time window $T_s$, evaluates a set of candidate high-level policies $\{\Pi_i\}$, and selects a policy family
   $\Pi^* = \arg\max_i\, [\, a\,\mathbb{E}[U(\Pi_i)\mid S] + b\, C(\Pi_i; S) - g\,\mathrm{Cost}(\Pi_i)\,]$ (as defined in Section 5.3). Measures: selection latency, selection accuracy under perturbation, and policy stability [19].
-* **Meta-Controller / Prior Generator (Meta-Self):** a long-horizon process that shapes the prior distribution P(Pi) over policy families and encodes identity constraints and long-term objectives. Meta-Self functions are updated on slow timescales via meta-learning or aggregated quality-control signals. Measures: prior concentration, transfer learning performance, and changes in P(Pi) after structured interventions [18].
+* **Meta-Controller / Prior Generator (Meta-Self):** a long-horizon process that shapes the prior distribution $P(\Pi)$ over policy families and encodes identity constraints and long-term objectives. Meta-Self functions are updated on slow timescales via meta-learning or aggregated quality-control signals. Measures: prior concentration, transfer learning performance, and changes in $P(\Pi)$ after structured interventions [18].
 
 ## 4.3 Mapping to the Viable System Model and Control Theory
 
@@ -181,15 +181,15 @@ The decomposition maps onto classical viable-system structures: Echo-Self aligns
 ## 4.4 Kernel, Ego Autopilot, and Safety Subsystems
 
 * **Central Integrative Hub (Kernel):** operationally the Kernel is a focal interoceptive/state-confidence signal used by controllers to estimate coherence. For humans, proxies include heart-rate variability (HRV) and validated interoceptive accuracy measures; for agents, Kernel is implemented as a state-estimator confidence metric (e.g., posterior precision). Kernel feeds into Super-Self selection and into Quality Control loops that surface misaligned priors [3].
-* **Fallback Safety Controller (Ego Autopilot):** a low-variance default policy engaged under low confidence or low coherence. It minimizes risk and conserves resources. Formally, Ego Autopilot is a policy pi_safe that is triggered when coherence C(x_t) < theta_safe. Measures: engagement frequency, conservatism index, and recovery time. This subsystem enforces safety and explains conservative behavioral reversion patterns [20], [21].
+* **Fallback Safety Controller (Ego Autopilot):** a low-variance default policy engaged under low confidence or low coherence. It minimizes risk and conserves resources. Formally, Ego Autopilot is a policy $\pi_{\text{safe}}$ that is triggered when coherence $C(x_t) < \theta_{\text{safe}}$. Measures: engagement frequency, conservatism index, and recovery time. This subsystem enforces safety and explains conservative behavioral reversion patterns [20], [21].
 
 ## 4.5 Option-Availability and the FREQ Coin Formalization
 
-Option-availability is the measurable set of viable actions perceived by an actor at time t. We operationalize Option-Availability as the effective action set size |A_eff(t)| weighted by subjective affordance scores. FREQ Coin is a derived, time-integrated coherence resource:^[**FREQ Coin:** The term intentionally bridges technical and operational domains. "FREQ" references frequency—both in the control-theoretic sense (rate of coherent state selection) and in contemplative traditions where "raising frequency" describes emotional/energetic states aligned with the Emotional Guidance Scale. "Coin" evokes resource economics and blockchain-like accumulation mechanics. This dual reference enables both formal modeling (as time-integrated coherence) and practical application. The Seismic ecosystem is also working towards implementing a corresponding on-chain governance token to operationalize coherence-based economics in regenerative decentralized funding mechanisms.]
+Option-availability is the measurable set of viable actions perceived by an actor at time $t$. We operationalize Option-Availability as the effective action set size $|A_{\text{eff}}(t)|$ weighted by subjective affordance scores. FREQ Coin is a derived, time-integrated coherence resource:^[**FREQ Coin:** The term intentionally bridges technical and operational domains. "FREQ" references frequency—both in the control-theoretic sense (rate of coherent state selection) and in contemplative traditions where "raising frequency" describes emotional/energetic states aligned with the Emotional Guidance Scale. "Coin" evokes resource economics and blockchain-like accumulation mechanics. This dual reference enables both formal modeling (as time-integrated coherence) and practical application. The Seismic ecosystem is also working towards implementing a corresponding on-chain governance token to operationalize coherence-based economics in regenerative decentralized funding mechanisms.]
 
 $$FREQ(t; \Delta) = \int_{t-\Delta}^{t} C(s)\, ds$$
 
-where C(s) is the coherence metric at time s and Δ is a rolling window. Higher FREQ(t) predicts larger |A_eff(t)| and greater policy richness. Empirically, FREQ(t) can be proxied by sustained HRV coherence, EEG phase synchrony, or time-integrated match scores in agents. Measurement details and analysis code are provided in Appendix B.
+where $C(s)$ is the coherence metric at time $s$ and $\Delta$ is a rolling window. Higher $FREQ(t)$ predicts larger $|A_{\text{eff}}(t)|$ and greater policy richness. Empirically, $FREQ(t)$ can be proxied by sustained HRV coherence, EEG phase synchrony, or time-integrated match scores in agents. Measurement details and analysis code are provided in Appendix B.
 
 ## 4.6 Algorithmic Sketch: Imagineer → Refine → Hold (Formal Pseudocode)
 
@@ -226,7 +226,7 @@ The Three-Self architecture yields specific empirical signatures:
 
 * **Hierarchical advantage:** Agents with explicit Echo/Super/Meta stratification will show faster recovery from distributional shifts and higher transfer performance than flat agents (testable in hierarchical RL benchmarks).
 * **Kernel sensitivity:** Manipulating Kernel inputs (e.g., altering affective feedback via HRV biofeedback) will causally influence Super-Self selection patterns and measured Option-Availability in human subjects.
-* **Ego Autopilot dynamics:** Under forced coherence degradation, behavior will converge to pi_safe with characteristic latency and retention statistics; modulation of Kernel thresholds theta_safe will shift the conservatism index.
+* **Ego Autopilot dynamics:** Under forced coherence degradation, behavior will converge to $\pi_{\text{safe}}$ with characteristic latency and retention statistics; modulation of Kernel thresholds $\theta_{\text{safe}}$ will shift the conservatism index.
 
 ## 4.8 Simulation & Empirical Testbeds
 
@@ -236,7 +236,7 @@ Recommended testbeds:
 * **Human experiments:** controlled lab tasks with HRV and subjective EGS ladders as feedback; interventions include coherence-enhancing microprotocols and belief-update manipulations (see Appendix A: H1–H4).
 * **Hybrid setups:** human-in-the-loop training where EGS signals are incorporated as shaping rewards for agent training (evaluate transfer and subjective agency).
 
-**Illustrative toy ablation (sanity check).** We implemented a minimal environment with episodic distributional shifts and compared a hierarchical agent using a coherence-weighted selector (b*C + a*U − g*Cost) against a flat baseline. Sweeping b and a while logging selection traces yields aggregated heatmaps (reward, alignment rate, position-match proxy) indicating that higher coherence weighting increases alignment with hidden context and improves simple proxy metrics in this toy setting. These traces serve as an instrumentation check only; full benchmarks belong in domain-appropriate tasks.
+**Illustrative toy ablation (sanity check).** We implemented a minimal environment with episodic distributional shifts and compared a hierarchical agent using a coherence-weighted selector ($bC + aU - g\,\mathrm{Cost}$) against a flat baseline. Sweeping $b$ and $a$ while logging selection traces yields aggregated heatmaps (reward, alignment rate, position-match proxy) indicating that higher coherence weighting increases alignment with hidden context and improves simple proxy metrics in this toy setting. These traces serve as an instrumentation check only; full benchmarks belong in domain-appropriate tasks.
 
 Section 5 formalizes the Resonance Engine and the coherence metrics used by the Super-Self to perform frame selection. The subsequent Methods Appendices provide concrete experimental templates and simulation specifications for the tests proposed here.
 
@@ -249,7 +249,7 @@ This section formalizes the operational core of ConsciOS: the Resonance Engine (
 
 ## 5.2 Coherence: Formal Definitions
 
-Let S denote the current sensory/interoceptive state (possibly multi-modal) and let F_i denote a candidate policy frame (a high-level policy, scenario, or world-model projection). Each frame F_i generates a predicted sensory trajectory or outcome distribution P(S | F_i). We define a coherence metric C(F_i; S) that quantifies how well the candidate frame explains or matches the current state.
+Let $S$ denote the current sensory/interoceptive state (possibly multi-modal) and let $F_i$ denote a candidate policy frame (a high-level policy, scenario, or world-model projection). Each frame $F_i$ generates a predicted sensory trajectory or outcome distribution $P(S \mid F_i)$. We define a coherence metric $C(F_i; S)$ that quantifies how well the candidate frame explains or matches the current state.
 
 Several alternative coherence formulations are applicable depending on data modalities and modeling choices:
 
@@ -270,27 +270,27 @@ Coherence is normalized to a bounded scale (e.g., [0,1]) for downstream operatio
 
 ## 5.3 Resonance Engine: Selection Rule
 
-Given a set of candidate frames {F_i} and current state S, the Resonance Engine selects the frame that maximizes an objective combining expected utility U(F_i) and coherence C(F_i; S). One canonical selection rule is:
+Given a set of candidate frames $\{F_i\}$ and current state $S$, the Resonance Engine selects the frame that maximizes an objective combining expected utility $U(F_i)$ and coherence $C(F_i; S)$. One canonical selection rule is:
 
 $$\Pi^*(S) = \arg\max_{F_i} \big[ a\, \mathbb{E}[U(F_i)\mid S] + b\, C(F_i; S) - g\, \mathrm{Cost}(F_i) \big]$$
 
 where:
 
-* E[U(F_i) | S] is the expected utility of adopting frame F_i given S (task dependent).
-* C(F_i; S) is the coherence metric defined above.
-* Cost(F_i) is a computational/energetic cost for switching to or instantiating F_i.
-* a, b, g are tunable meta-weights (could be learned by Meta-Self).
+* $\mathbb{E}[U(F_i) \mid S]$ is the expected utility of adopting frame $F_i$ given $S$ (task dependent).
+* $C(F_i; S)$ is the coherence metric defined above.
+* $\mathrm{Cost}(F_i)$ is a computational/energetic cost for switching to or instantiating $F_i$.
+* $a, b, g$ are tunable meta-weights (could be learned by Meta-Self).
 
 Interpretation:
 
-* The Super-Self implements Pi* by ranking frames on this composite score. When b >> a, selection is coherence-driven (resonance priority); when a >> b, selection is utility-driven.
+* The Super-Self implements $\Pi^*$ by ranking frames on this composite score. When $b \gg a$, selection is coherence-driven (resonance priority); when $a \gg b$, selection is utility-driven.
 * A stochastic softmax version permits exploration:
 
 $$P(\text{choose } F_i \mid S) \propto \exp\!\big(\tau^{-1}\, [\, a\,\mathbb{E}[U] + b\, C - g\,\mathrm{Cost}\,] \big)$$
 
-where tau is a temperature parameter.
+where $\tau$ is a temperature parameter.
 
-![Resonance Engine selection — composite scoring of expected utility, coherence, and cost (softmax or argmax; weights a, b, g). Credit: ConsciOS (this work); evidence/coherence framing relates to active inference [13], [22].](figures/resonance-engine-selector.png){ width=70% }
+![Resonance Engine selection — composite scoring of expected utility, coherence, and cost (softmax or argmax; weights $a, b, g$). Credit: ConsciOS (this work); evidence/coherence framing relates to active inference [13], [22].](figures/resonance-engine-selector.png){ width=70% }
 
 ## 5.4 Emotional Guidance Scale (EGS) as an Internal Control Signal
 
@@ -298,7 +298,7 @@ We operationalize the Emotional Guidance Scale (EGS) as a discretized or continu
 
 $$\text{EGS}(t) := g(\Phi_{\text{intero}}(S_t), \rho(S_t))$$
 
-where $\Phi_{\text{intero}}(\cdot)$ is a vector of physiological interoceptive metrics (e.g., HRV indices, galvanic skin response, slow cortical potentials) and rho(S_t) is a short-horizon predictive fit metric (e.g., one-step prediction error). The mapping g(·) can be a learned regression (for agents) or a validated psychometric ladder (for humans). EGS is normalized to [−1, +1] (negative → low coherence/disfavor; positive → high coherence/endorsement) or to discrete bands (e.g., 1–10 ladder).
+where $\Phi_{\text{intero}}(\cdot)$ is a vector of physiological interoceptive metrics (e.g., HRV indices, galvanic skin response, slow cortical potentials) and $\rho(S_t)$ is a short-horizon predictive fit metric (e.g., one-step prediction error). The mapping $g(\cdot)$ can be a learned regression (for agents) or a validated psychometric ladder (for humans). EGS is normalized to $[-1, +1]$ (negative → low coherence/disfavor; positive → high coherence/endorsement) or to discrete bands (e.g., 1–10 ladder).
 
 EGS serves multiple roles:
 
@@ -310,18 +310,18 @@ EGS serves multiple roles:
 
 ## 5.5 FREQ Coin: Time-Integrated Coherence Currency
 
-Define instantaneous coherence for the active frame F* at time t as C*(t) := C(F*(t); S_t). FREQ Coin is a time-integral of coherence, possibly with discounting:
+Define instantaneous coherence for the active frame $F^*$ at time $t$ as $C^*(t) := C(F^*(t); S_t)$. FREQ Coin is a time-integral of coherence, possibly with discounting:
 
 $$FREQ(t) := \int_{0}^{t} e^{-\lambda (t-s)}\, C^*(s)\, ds$$
 
-where lambda >= 0 is a decay rate. In discrete time windows Delta:
+where $\lambda \geq 0$ is a decay rate. In discrete time windows $\Delta$:
 
 $$FREQ_t = \sum_{k=0}^{N} e^{-\lambda k}\, C^*(t-k)$$
 
 Interpretation and operational use:
 
 * FREQ measures sustained time-on-coherence; higher FREQ grants greater option-availability and resource allocation privileges (e.g., unlocking higher complexity frames).
-* FREQ dynamics can be used as constraints in the Super-Self selection rule (e.g., require FREQ_t >= theta_unlock to consider high-cost frames).
+* FREQ dynamics can be used as constraints in the Super-Self selection rule (e.g., require $FREQ_t \geq \theta_{\text{unlock}}$ to consider high-cost frames).
 * Agent implementation: treat FREQ as a meta-state variable updated after each episode and used in hierarchical policy gating.
 
 ## 5.6 Algorithmic Pseudocode: Resonance Engine (Selection + Update)
@@ -377,19 +377,19 @@ This loop uses NLS (Nearest-Lighter-Step) as a bounded local search heuristic to
 
 ## 5.8 Quality Control and Belief Surfacing Dynamics
 
-Quality Control refers to the surfacing of misaligned priors when an agent holds a new high-coherence frame. Formally, let prior parameters be theta. On holding a new frame F_hold with high C and sustained FREQ, large prediction mismatches elsewhere can produce a gradient for updating theta:
+Quality Control refers to the surfacing of misaligned priors when an agent holds a new high-coherence frame. Formally, let prior parameters be $\theta$. On holding a new frame $F_{\text{hold}}$ with high $C$ and sustained FREQ, large prediction mismatches elsewhere can produce a gradient for updating $\theta$:
 
 $$\Delta\theta \propto \eta\, \nabla_{\!\theta}\, L_{\mathrm{total}}\!\big(\theta; D_{\mathrm{hold}}\big)$$
 
-where L_total includes prediction error terms that were previously suppressed by low-coherence priors. Practically, this results in the surfacing of contradictions (beliefs that fail to explain held states) that must be revised. This update dynamic is formalized in active inference as precision-weighted prediction error minimization and corresponds to our observed "quality control" phenomenon [13].
+where $L_{\mathrm{total}}$ includes prediction error terms that were previously suppressed by low-coherence priors. Practically, this results in the surfacing of contradictions (beliefs that fail to explain held states) that must be revised. This update dynamic is formalized in active inference as precision-weighted prediction error minimization and corresponds to our observed "quality control" phenomenon [13].
 
 ## 5.9 Empirical Signatures and Testable Predictions
 
-**P1 (Selection Stability Tradeoff):** Increasing b (coherence weight) in the selection rule raises frame stability (longer holding durations) but reduces exploratory policy diversity; this tradeoff can be measured in simulated agents by plotting mean hold_time vs policy entropy under varying b.
+**P1 (Selection Stability Tradeoff):** Increasing $b$ (coherence weight) in the selection rule raises frame stability (longer holding durations) but reduces exploratory policy diversity; this tradeoff can be measured in simulated agents by plotting mean hold_time vs policy entropy under varying $b$.
 
-**P2 (EGS Predictive Utility):** Short-horizon changes in EGS predict subsequent policy-switch probability within Δt minutes in human experiments; validation via logistic regression controlling for task difficulty and baseline affect.
+**P2 (EGS Predictive Utility):** Short-horizon changes in EGS predict subsequent policy-switch probability within $\Delta t$ minutes in human experiments; validation via logistic regression controlling for task difficulty and baseline affect.
 
-**P3 (FREQ Correlation):** Cumulative FREQ(t; Δ) correlates positively with Option-Availability metrics |A_eff(t)| and with subjective reports of perceived affordances.
+**P3 (FREQ Correlation):** Cumulative $FREQ(t; \Delta)$ correlates positively with Option-Availability metrics $|A_{\text{eff}}(t)|$ and with subjective reports of perceived affordances.
 
 **P4 (Quality Control Latency):** The time between holding a high-coherence frame and subsequent belief revision (quality control latency) scales with prior strength (measured by prior concentration); stronger priors lead to longer latency and more abrupt updates.
 
@@ -419,9 +419,9 @@ where L_total includes prediction error terms that were previously suppressed by
 
 **Summary.** Predictive processing and active inference cast perception and action as inference: agents minimize prediction error (or maximize model evidence) through action and belief updating [14], [15], [22]. Hierarchical priors determine what the system expects, and precision weighting governs which errors prompt updates.
 
-**ConsciOS Mapping.** The Resonance Engine's coherence metric (C) parallels model evidence and the selection rule (maximize a*E[U] + b*C − g*Cost) reframes selection as evidence-weighted policy choice. The Meta-Self corresponds to long-timescale priors; Super-Self performs evidence accumulation and selection. Quality Control dynamics directly correspond to precision-weighted prediction error updates: holding a new frame increases exposure of misalignments that drive belief revision.
+**ConsciOS Mapping.** The Resonance Engine's coherence metric ($C$) parallels model evidence and the selection rule (maximize $a\,\mathbb{E}[U] + b\,C - g\,\mathrm{Cost}$) reframes selection as evidence-weighted policy choice. The Meta-Self corresponds to long-timescale priors; Super-Self performs evidence accumulation and selection. Quality Control dynamics directly correspond to precision-weighted prediction error updates: holding a new frame increases exposure of misalignments that drive belief revision.
 
-**Model status.** Strong formal alignment — many ConsciOS mechanisms align with active inference; selection weighting (a, b tuning) and FREQ as time-integrated evidence are integrative hypotheses that can be formalized and tested.
+**Model status.** Strong formal alignment — many ConsciOS mechanisms align with active inference; selection weighting ($a$, $b$ tuning) and FREQ as time-integrated evidence are integrative hypotheses that can be formalized and tested.
 
 **Measurement & Tests:** implement coherence as model evidence or KLD; compare selection by evidence vs utility in simulated agents; use active-inference benchmarks to evaluate frame holding, belief revision timing, and quality-control signatures.
 
@@ -488,9 +488,9 @@ This section translates the ConsciOS architecture into concrete architectures, e
 
 In artificial agents, ConsciOS constructs are operationalized through computational analogs of biological signals. The agent develops "interoceptive" coherence measures from its own internal model statistics (e.g., prediction error, parameter stability, model evidence). During training, these autonomous measures may be supplemented or shaped by human-provided EGS signals (see Experiment 3); in deployment, the agent operates using self-assessed coherence.
 
-* **Embodied controller / low-level policy (Echo-Self):** Implemented as a fast policy module or low-level controller in robotics or simulated agents (e.g., policy pi_e parameterized by neural networks or model predictive controllers). It handles sensory inputs and immediate action loops and exposes short-horizon telemetry (latencies, action entropy). (Place: agent S1–S3) [15].
-* **Supervisory controller / policy selector (Super-Self):** Implemented as a mid-level manager that selects or composes policies from a policy library or a set of options. Technically realized as a policy-over-options, gating network, or a learned selector (e.g., meta-controller). It evaluates coherence metrics and expected utility and implements the ResonanceEngine selection rule. (Place: agent S4) [16].
-* **Meta-controller / prior generator (Meta-Self):** Implemented as a meta-learning or prior-shaping module: e.g., an outer loop that updates priors, regularizers, or initializations (MAML-style, population-based training, or distributional priors). It controls long-term adaptation, governance constraints, and objective shaping. (Place: agent S5) [15].
+* **Embodied controller / low-level policy (Echo-Self):** Implemented as a fast policy module or low-level controller in robotics or simulated agents (e.g., policy $\pi_e$ parameterized by neural networks or model predictive controllers). It handles sensory inputs and immediate action loops and exposes short-horizon telemetry (latencies, action entropy) [15] (maps to VSM Systems 1–3).
+* **Supervisory controller / policy selector (Super-Self):** Implemented as a mid-level manager that selects or composes policies from a policy library or a set of options. Technically realized as a policy-over-options, gating network, or a learned selector (e.g., meta-controller). It evaluates coherence metrics and expected utility and implements the ResonanceEngine selection rule [16] (maps to VSM System 4).
+* **Meta-controller / prior generator (Meta-Self):** Implemented as a meta-learning or prior-shaping module: e.g., an outer loop that updates priors, regularizers, or initializations (MAML-style, population-based training, or distributional priors). It controls long-term adaptation, governance constraints, and objective shaping [15] (maps to VSM System 5).
 * **Centralized coherence estimator, discretized affect index, and time-integrated coherence resource (Kernel / EGS / FREQ):** Kernel = centralized coherence estimator (e.g., model evidence, posterior precision); EGS = scalar intrinsic signal computed from internal prediction error, parameter stability, and state confidence; FREQ = persistent meta-state (time-integrated coherence). These variables inform gating, reward shaping, and policy unlocking dynamics.
 
 ## 7.3 Concrete Technical Experiments (Agentic Testbeds)
@@ -504,7 +504,7 @@ Below are prioritized experiments that produce defensible empirical claims and a
 * **Metrics:** cumulative reward, adaptation latency (time to recover pre-shift performance), policy diversity, computational cost.
 * **Expected Result:** Hierarchical agent exhibits faster recovery, higher transfer, and graceful degradation under constraints if Meta/Super stratification is effective.
 
-#### Experiment 2: EGS as Intrinsic Reward (Affect-Driven RL)
+**Experiment 2: EGS as Intrinsic Reward (Affect-Driven RL)**
 
 * **Setup:** Train agents with an intrinsic reward augment derived from an EGS proxy computed from the agent's own internal coherence signals (e.g., prediction error magnitude, parameter update stability, model evidence). Compare to agents with standard curiosity or novelty intrinsic rewards.
 * **Manipulations:** Vary scale of EGS influence; test in sparse reward environments.
@@ -518,7 +518,7 @@ Below are prioritized experiments that produce defensible empirical claims and a
 * **Measures:** agent alignment to human preferences, transfer, and human perceived control and agency.
 * **Safety Guardrails:** explicit consent, adversarial signal detection, audit logs, human override. Ethical review required.
 
-#### Experiment 4: FREQ Gate Unlocking Complexity
+**Experiment 4: FREQ Gate Unlocking Complexity**
 
 * **Setup:** Implement FREQ(t) as time-integrated coherence; implement high-cost policies that require FREQ >= theta to unlock.
 * **Metrics:** policy complexity usage, cost efficiency, task performance under time pressure.
@@ -545,10 +545,10 @@ Below are prioritized experiments that produce defensible empirical claims and a
 
 * **Agent performance:** cumulative reward, normalized performance relative to baseline.
 * **Adaptation:** adaptation latency post distributional shift, recovery ratio.
-* **Option-availability proxy:** measured |A_eff(t)| via simulated affordance enumeration or human reported affordance counts (experience sampling).
+* **Option-availability proxy:** measured $|A_{\text{eff}}(t)|$ via simulated affordance enumeration or human reported affordance counts (experience sampling).
 * **Coherence correlation:** Spearman/Pearson correlation of coherence metric C with EGS proxies and with downstream performance improvements.
 * **FREQ impact:** correlation and causal estimates (instrumental variable or randomized threshold experiments) of FREQ on policy unlocking and sustained performance.
-* **Safety metrics:** frequency of pi_safe engagements, rate of adversarial detection triggers, human override rate.
+* **Safety metrics:** frequency of $\pi_{\text{safe}}$ engagements, rate of adversarial detection triggers, human override rate.
 
 ## 7.7 Roadmap for Pilots, Datasets, and Reproducibility
 
