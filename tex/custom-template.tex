@@ -177,11 +177,11 @@
 \usepackage{placeins}
 \usepackage{float}
 \renewcommand{\topfraction}{0.85}
-\renewcommand{\bottomfraction}{0.70}
+\renewcommand{\bottomfraction}{0.30}  % Reduced from 0.70 to discourage bottom placement
 \renewcommand{\textfraction}{0.15}
 \renewcommand{\floatpagefraction}{0.80}
 \setcounter{topnumber}{2}
-\setcounter{bottomnumber}{2}
+\setcounter{bottomnumber}{1}  % Reduced from 2 to limit bottom floats
 \setcounter{totalnumber}{4}
 % Manual float barriers can be inserted where needed with \FloatBarrier
 

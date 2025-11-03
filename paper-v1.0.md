@@ -30,14 +30,14 @@ We use the following symbols consistently throughout the paper. Pi (Π) denotes 
 
 # 2. Foundational Models: A Systems-Theoretic Framework
 
-This section formalizes two complementary systems-theoretic tools used throughout this paper: (1) the Iceberg Model, a diagnostic hierarchy for identifying causal leverage in complex systems [10], [11]; and (2) a 7-component Universal System Model, an architectural template for describing the functional elements of viable systems [12], [13]. Together they provide a common language for mapping claims about consciousness, behavior, and artificial agents to implementable system designs.
+This section formalizes two complementary systems-theoretic tools used throughout this paper: (1) the Iceberg Model, a diagnostic hierarchy for identifying causal leverage in complex systems (Fig. 1) [10], [11]; and (2) a 7-component Universal System Model, an architectural template for describing the functional elements of viable systems (Fig. 2) [12], [13]. Together they provide a common language for mapping claims about consciousness, behavior, and artificial agents to implementable system designs.
 
 
 Detailed experimental protocols, measurement specifications, and analysis plans are provided in Appendix A (Experimental Protocols) and Appendix B (Measurement Instruments & Analysis Pipelines).
 
 ## 2.1 The Iceberg Model as Diagnostic Hierarchy
 
-The Iceberg Model is a layered diagnostic heuristic that distinguishes observable events from the deeper structures and assumptions that generate them. It operationalizes four abstraction layers:
+The Iceberg Model (Fig. 1) is a layered diagnostic heuristic that distinguishes observable events from the deeper structures and assumptions that generate them. It operationalizes four abstraction layers:
 
 * Events (observable outputs; momentary data)
 * Patterns/Trends (temporal regularities in events)
@@ -59,7 +59,7 @@ Consequence for the ConsciOS architecture: the Iceberg Model provides the causal
 
 ## 2.2 The 7-Component Universal System Model (Architectural Template)
 
-To move from diagnosis to design we adopt a 7-component functional template that captures the essential elements required for viability across physical, informational, and cognitive systems. Each component is presented with a formal operational definition useful for modeling and experiment design.
+To move from diagnosis to design we adopt a 7-component functional template (Fig. 2) that captures the essential elements required for viability across physical, informational, and cognitive systems. Each component is presented with a formal operational definition useful for modeling and experiment design.
 
 1. **Inputs:** exogenous and endogenous resources, signals, or intents entering the system.
 2. **Processes:** transformation functions (deterministic or stochastic) acting on inputs to produce intermediate states.
@@ -110,7 +110,7 @@ We formulate a small set of testable hypotheses that follow from the mapping. Th
 
 **H5 (Somatic Resonance as a Coherence Signal):** Subjective reports of somatic markers (felt expansion/contraction in the thoracic region) will correlate with physiological coherence proxies (e.g., HRV) and will predict subsequent policy/frame selection above and beyond expected utility terms.
 
-Each hypothesis is followed by a suggested experimental probe in Appendix A. In short: H1/H2 are suitable for human subject experiments (laboratory + ecological sampling); H3/H4 can be evaluated in simulated agents and human-in-the-loop agent training regimes.
+Each hypothesis is followed by a suggested experimental probe in Appendix A. In short: H1/H2/H5 are suitable for human subject experiments (laboratory + ecological sampling); H3/H4 can be evaluated in simulated agents and human-in-the-loop agent training regimes.
 
 Having established the diagnostic ladder (Iceberg) and the architectural template (7-component model) and mapped them to the ConsciOS constructs, the paper now proceeds to specify the nested controller architecture (Echo-Self / Super-Self / Meta-Self) and the Resonance Engine mechanics that implement selection among pre-rendered policy frames. The next section formalizes these components and derives the algorithmic protocols used in Appendix A.
 
@@ -124,14 +124,14 @@ To operationalize consciousness as an engineering target we adopt a multi-layer 
 
 * **Physical Layer:** material substrate, embodied sensors and actuators, and physical laws constraining feasible actions.
 * **Informational Layer:** representations, data structures, code, and communicated signals (including logs, messages, and policy descriptors).
-* **Energetic Layer:** sustained coherence, affective valence, and a time-integrated coherence resource (which we term FREQ Coin), alongside other resource metrics (e.g., metabolic/attention budgets).
+* **Energetic Layer:** sustained coherence, affective valence, and a time-integrated coherence resource (which we term **FREQ Coin**^[**FREQ Coin:** The term intentionally bridges technical and operational domains. "FREQ" references frequency—both in the control-theoretic sense (rate of coherent state selection) and in contemplative traditions where "raising frequency" describes emotional/energetic states aligned with the Emotional Guidance Scale. "Coin" evokes resource economics and blockchain-like accumulation mechanics. This dual reference enables both formal modeling (as time-integrated coherence) and practical application. The Seismic ecosystem is also working towards implementing a corresponding on-chain governance token to operationalize coherence-based economics in regenerative decentralized funding mechanisms.]), alongside other resource metrics (e.g., metabolic/attention budgets).
 * **Consciousness Layer:** subjective report, self-model, long-horizon priors, and meta-intentional structures.
 
 This tiered ontology follows contemporary approaches that treat cognition as a multi-scale phenomenon where higher-order priors constrain lower-level processing (active inference / predictive processing) [14]-[16]. Active-inference treatments of the self demonstrate how hierarchical priors instantiate self-representations and influence perception–action loops, providing a formal justification for treating consciousness as a layered control architecture rather than a monolithic phenomenon [15]. The "relevance realization" problem — how an agent determines which internal representations are presently important — has been recently formalized in the predictive-processing literature and directly motivates the Resonance Engine as a coherence-based selector among candidate policy frames [17].
 
 ## 3.3 The Nested ConsciOS Architecture — Formalization and Control Interpretation
 
-We formalize the Nested ConsciOS Architecture as a nested control topology:
+We formalize the Nested ConsciOS Architecture as a nested control topology (Fig. 3):
 
 * Echo-Self executes perception–action loops governed by short-horizon process dynamics (local controllers). These loops are parameterized by local priors and short-term beliefs (internal constraints).
 * Super-Self functions as a supervisory controller that aggregates feedback across time and space, evaluates the coherence of candidate high-level policy frames, and selects the active policy family using a coherence-matching metric, which we term the **Resonance Engine**.
@@ -139,7 +139,7 @@ We formalize the Nested ConsciOS Architecture as a nested control topology:
 
 This nested topology is isomorphic to viable-system decompositions in organizational cybernetics—lower operational units are supervised by higher intelligence while a meta-governor maintains identity and global objectives [11], [13]. Importantly, the ontology treats interplay between layers as bidirectional: the Meta-Self constrains policy families top-down, while feedback and Quality Control mechanisms induce bottom-up belief revision.
 
-![The Nested ConsciOS Architecture — nested control topology (Echo-Self, Super-Self, Meta-Self). Selector score $= a \cdot \text{Utility} + b \cdot \text{Coherence} - g \cdot \text{Cost}$; Feedback aggregates at Super with a dotted slow branch to Meta; Quality Control routes Echo → Super → Meta for prior updates. Credit: ConsciOS architecture (this work); informed by the Viable System Model [11], [13] and hierarchical control frameworks [18], [19].](figures/nested-conscios-architecture.png){ width=100% }
+![The Nested ConsciOS Architecture — nested control topology (Echo-Self, Super-Self, Meta-Self). Selector Score $= a \cdot \text{Utility} + b \cdot \text{Coherence} - g \cdot \text{Cost}$; Feedback aggregates at Super with a dotted slow branch to Meta; Quality Control routes Echo → Super → Meta for prior updates. Credit: ConsciOS architecture (this work); informed by the Viable System Model [11], [13] and hierarchical control frameworks [18], [19].](figures/nested-conscios-architecture.png){ width=100% }
 
 ## 3.4 Measurement Constructs and Testable Mappings
 
@@ -156,8 +156,8 @@ Mapping these constructs to the Iceberg diagnostic levels allows hypothesis test
 
 Two early probes that bridge human and simulated tests are suggested:
 
-* **Probe A (Human):** A belief-update intervention targeting a narrow set of priors (e.g., causal attributions about controllability) measured pre/post via time-series of behavioral choices and coherence proxies (HRV, subjective EGS). Outcome: pattern persistence index and option-availability change.
-* **Probe B (Simulated):** A hierarchical RL benchmark where agents possess Echo/Super/Meta modules. Evaluate adaptation speed and transfer performance under distributional shift versus flat control agents. Outcome metrics: cumulative reward, policy diversity, and adaptation latency.
+* **Probe A (Human):** A belief-update intervention targeting a narrow set of priors (e.g., causal attributions about controllability) measured pre/post via time-series of behavioral choices and coherence proxies (HRV, subjective EGS). **Outcome metrics:** pattern persistence index and option-availability change.
+* **Probe B (Simulated):** A hierarchical RL benchmark where agents possess Echo/Super/Meta modules. Evaluate adaptation speed and transfer performance under distributional shift versus flat control agents. **Outcome metrics:** cumulative reward, policy diversity, and adaptation latency.
 
 The ontology and operational mappings set the stage for Section 4, which formalizes the Echo/Super/Meta controller architectures, and Section 5, which operationalizes the Resonance Engine and EGS as measurable selector functions. The combined model yields a testable engineering program for both human experimental research and agent simulation studies.
 
@@ -185,7 +185,7 @@ The decomposition maps onto classical viable-system structures: Echo-Self aligns
 
 ## 4.5 Option-Availability and the FREQ Coin Formalization
 
-Option-availability is the measurable set of viable actions perceived by an actor at time $t$. We operationalize Option-Availability as the effective action set size $|A_{\text{eff}}(t)|$ weighted by subjective affordance scores. FREQ Coin is a derived, time-integrated coherence resource:^[**FREQ Coin:** The term intentionally bridges technical and operational domains. "FREQ" references frequency—both in the control-theoretic sense (rate of coherent state selection) and in contemplative traditions where "raising frequency" describes emotional/energetic states aligned with the Emotional Guidance Scale. "Coin" evokes resource economics and blockchain-like accumulation mechanics. This dual reference enables both formal modeling (as time-integrated coherence) and practical application. The Seismic ecosystem is also working towards implementing a corresponding on-chain governance token to operationalize coherence-based economics in regenerative decentralized funding mechanisms.]
+Option-availability is the measurable set of viable actions perceived by an actor at time $t$. We operationalize Option-Availability as the effective action set size $|A_{\text{eff}}(t)|$ weighted by subjective affordance scores. FREQ Coin is a derived, time-integrated coherence resource:
 
 $$FREQ(t; \Delta) = \int_{t-\Delta}^{t} C(s)\, ds$$
 
@@ -233,7 +233,7 @@ The Three-Self architecture yields specific empirical signatures:
 Recommended testbeds:
 
 * **Simulated environments:** procedurally generated tasks with episodic changes and forced distributional shifts (benchmarks for hierarchical RL). Log policy families, coherence metrics, and FREQ proxies.
-* **Human experiments:** controlled lab tasks with HRV and subjective EGS ladders as feedback; interventions include coherence-enhancing microprotocols and belief-update manipulations (see Appendix A: H1–H4).
+* **Human experiments:** controlled lab tasks with HRV and subjective EGS ladders as feedback; interventions include coherence-enhancing microprotocols and belief-update manipulations (see Appendix A: H1–H5).
 * **Hybrid setups:** human-in-the-loop training where EGS signals are incorporated as shaping rewards for agent training (evaluate transfer and subjective agency).
 
 **Illustrative toy ablation (sanity check).** We implemented a minimal environment with episodic distributional shifts and compared a hierarchical agent using a coherence-weighted selector ($bC + aU - g\,\mathrm{Cost}$) against a flat baseline. Sweeping $b$ and $a$ while logging selection traces yields aggregated heatmaps (reward, alignment rate, position-match proxy) indicating that higher coherence weighting increases alignment with hidden context and improves simple proxy metrics in this toy setting. These traces serve as an instrumentation check only; full benchmarks belong in domain-appropriate tasks.
@@ -270,7 +270,7 @@ Coherence is normalized to a bounded scale (e.g., [0,1]) for downstream operatio
 
 ## 5.3 Resonance Engine: Selection Rule
 
-Given a set of candidate frames $\{F_i\}$ and current state $S$, the Resonance Engine selects the frame that maximizes an objective combining expected utility $U(F_i)$ and coherence $C(F_i; S)$. One canonical selection rule is:
+Given a set of candidate frames $\{F_i\}$ and current state $S$, the Resonance Engine selects the frame that maximizes an objective combining expected utility $U(F_i)$ and coherence $C(F_i; S)$ (Fig. 4). One canonical selection rule is:
 
 $$\Pi^*(S) = \arg\max_{F_i} \big[ a\, \mathbb{E}[U(F_i)\mid S] + b\, C(F_i; S) - g\, \mathrm{Cost}(F_i) \big]$$
 
@@ -290,23 +290,31 @@ $$P(\text{choose } F_i \mid S) \propto \exp\!\big(\tau^{-1}\, [\, a\,\mathbb{E}[
 
 where $\tau$ is a temperature parameter.
 
+\FloatBarrier
+
 ![Resonance Engine selection — composite scoring of expected utility, coherence, and cost (softmax or argmax; weights $a, b, g$). Credit: ConsciOS (this work); evidence/coherence framing relates to active inference [13], [22].](figures/resonance-engine-selector.png){ width=70% }
+
+\FloatBarrier
 
 ## 5.4 Emotional Guidance Scale (EGS) as an Internal Control Signal
 
-We operationalize the Emotional Guidance Scale (EGS) as a discretized or continuous scalar derived from interoceptive measures and subjective reports, serving as an internal proxy for momentary coherence/valence. Formally:
+We operationalize the Emotional Guidance Scale (EGS) as a discretized or continuous scalar derived from interoceptive measures and subjective reports, serving as an internal proxy for momentary coherence/valence (Fig. 5). Formally:
 
 $$\text{EGS}(t) := g(\Phi_{\text{intero}}(S_t), \rho(S_t))$$
 
 where $\Phi_{\text{intero}}(\cdot)$ is a vector of physiological interoceptive metrics (e.g., HRV indices, galvanic skin response, slow cortical potentials) and $\rho(S_t)$ is a short-horizon predictive fit metric (e.g., one-step prediction error). The mapping $g(\cdot)$ can be a learned regression (for agents) or a validated psychometric ladder (for humans). EGS is normalized to $[-1, +1]$ (negative → low coherence/disfavor; positive → high coherence/endorsement) or to discrete bands (e.g., 1–10 ladder).
+
+\begin{figure}[H]
+\centering
+\includegraphics[width=0.6\textwidth]{figures/emotional-guidance-scale.png}
+\caption{Emotional Guidance Scale (EGS) — discretized interoceptive control signal; used for Nearest-Lighter-Step guidance and intrinsic reward shaping. Credit: ConsciOS (this work); interoception foundations [3].}
+\end{figure}
 
 EGS serves multiple roles:
 
 * **Local guidance heuristic for Echo-Self (nearest-lighter-step moves):** if EGS rises after a local perturbation, the perturbation direction is favored.
 * **Reward shaping signal for RL agents:** small positive EGS deltas can be used as intrinsic reward components [23].
 * **Stopping/holding criterion in Imagineer→Refine→Hold:** sustained positive EGS over hold_T supports encoding of the chosen frame.
-
-![Emotional Guidance Scale (EGS) — discretized interoceptive control signal; used for Nearest-Lighter-Step guidance and intrinsic reward shaping. Credit: ConsciOS (this work); interoception foundations [3].](figures/emotional-guidance-scale.png){ width=60% }
 
 ## 5.5 FREQ Coin: Time-Integrated Coherence Currency
 
