@@ -1,14 +1,23 @@
-Multi-license notice for this repository
+Creative Commons Attribution 4.0 International (CC BY 4.0)
 
-This repository is licensed by component, not under a single LICENSE file.
-The former MIT license for this project is no longer in effect.
+This work is licensed under the Creative Commons Attribution 4.0 International License.
 
-Please refer to the following files for current terms:
+You are free to:
+- Share — copy and redistribute the material in any medium or format
+- Adapt — remix, transform, and build upon the material for any purpose, even commercially
 
-- LICENSE-CODE — GNU Affero General Public License v3.0 (AGPLv3) for code.
-- LICENSE-TEXT — CC BY-NC-SA 4.0 for the paper text and generated PDFs.
-- LICENSE-FIGURES — Per-figure licensing summary (mostly CC BY-NC-SA 4.0; Figure 3 CC BY-NC-ND 4.0).
-- NOTICE — Attribution and commercial licensing contact.
+Under the following terms:
+- Attribution — You must give appropriate credit, provide a link to the license, and indicate if changes were made. You may do so in any reasonable manner, but not in any way that suggests the licensor endorses you or your use.
 
-If you obtained a copy of this repository containing this file, you must
-comply with the applicable license per component as described above.
+No additional restrictions — You may not apply legal terms or technological measures that legally restrict others from doing anything the license permits.
+
+Full license text: https://creativecommons.org/licenses/by/4.0/legalcode
+
+---
+
+Suggested citation:
+
+Kay, H. (2024). ConsciOS v1.0: A Coherence-Based Architecture for Conscious AI Alignment. 
+Available at: https://www.goseismic.org/post/the-seismic-trifecta-why-ai-alignment-starts-with-consciousness
+
+For questions or commercial partnerships, contact: han.kay@goseismic.org
