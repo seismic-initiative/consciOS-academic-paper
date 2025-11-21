@@ -800,6 +800,10 @@ VSM Systems and ConsciOS alignment (concise):
 
 **Notes:** Echo corresponds to operational bandwidth and local control; Super aggregates feedback and selects among policy families; Meta encodes priors and identity constraints that shape policy space and slow updates. This mapping is heuristic but aligns with canonical VSM roles [11], [13].
 
+## Acknowledgments
+
+This manuscript's conceptual framework emerged during the development of the related book 'Conscious Life,' where Claude Sonnet 4.5 assisted with initial brainstorming and structuring. The idea for an academic paper arose in a subsequent session using GPT-5 High in the Cursor IDE, which produced a full initial draft—including a structural skeleton, preliminary references, and literature integration—in approximately 3 hours under the author's continuous guidance. The author then dedicated 3 weeks to rigorous fact-checking, detailed editing, and refinement within the agentic Cursor workflow, treating the process as a hybrid collaboration akin to guiding AI 'assistants' under detective-like scrutiny to ensure accuracy, originality, conceptual integrity, and alignment with the intended contributions while addressing any deviations or inaccuracies.
+
 ## References
 
 [1] B. Schoen, E. Nitishinskaya, M. Balesni, et al., "Stress Testing Deliberative Alignment for Anti-Scheming Training," Apollo Research & OpenAI, 2025. arXiv:2509.15541.
