@@ -5,7 +5,7 @@ authors:
     given-names: Kılıçhan (Han Kay)
 version: "v1.0"
 date-released: "2025-08-16"
-license: MIT
+license: CC-BY-4.0
 repository-code: "https://github.com/" # fill when pushing
 keywords: [conscios, viable systems, active inference, hierarchical RL, interoception]
 preferred-citation:
