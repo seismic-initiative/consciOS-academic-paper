@@ -1,14 +1,22 @@
-# ConsciOS Paper
+# ⚠️ This Repository Has Moved
 
-This repository contains the ConsciOS v1.0 manuscript (paper.md), preprint build assets, and a toy code demo.
+**This repository is archived and no longer maintained.**
 
-- Preprint: `preprint/ConsciOS_v1.0_preprint.pdf`
-- Figures: `./figures`
-- Build PDF: `./scripts/build_pdf.sh` (Pandoc + Tectonic)
+The ConsciOS paper has been updated to **v4** with academic-neutral formatting and is now maintained at:
 
-## License
+## 👉 [Sistemist/consciOS-paper](https://github.com/Sistemist/consciOS-paper)
 
-This work is licensed under [CC BY 4.0](https://creativecommons.org/licenses/by/4.0/) — free to use, adapt, and share with attribution.
+Please use the new repository for:
+- Latest v4 manuscript (`paper-v4.md`)
+- Updated preprint PDF (`preprint/ConsciOS_v4_preprint.pdf`)
+- All figures and build scripts
+- Issues and discussions
 
-For the Seismic whitepaper and site, see:
-- Website: https://goseismic.org
+---
+
+**What happened to this repo?**
+- This version (v1.0) contained branding elements
+- The new repo has been sanitized for academic publication
+- All content has been updated and migrated
+
+**Questions?** Open an issue in the [new repository](https://github.com/Sistemist/consciOS-paper/issues).
